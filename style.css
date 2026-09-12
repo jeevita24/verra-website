@@ -1,0 +1,82 @@
+:root {
+  --ink: #25201d;
+  --cream: #f5f0e8;
+  --paper: #fbf9f5;
+  --clay: #b77761;
+  --sage: #9aa18b;
+  --line: rgba(37,32,29,.14);
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+.site-header { height: 82px; padding: 0 6vw; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); background: rgba(251,249,245,.94); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); }
+.logo, .footer-logo { font-size: 1.25rem; letter-spacing: .28em; font-weight: 600; }
+.nav { display: flex; gap: 2.2rem; font-size: .83rem; text-transform: uppercase; letter-spacing: .12em; }
+.nav a { transition: opacity .2s; }
+.nav a:hover { opacity: .5; }
+.menu-toggle { display: none; background: none; border: 0; font-size: 1.5rem; }
+.hero { min-height: calc(100vh - 82px); padding: 7vw 8vw; display: grid; grid-template-columns: 1fr .9fr; gap: 7vw; align-items: center; background: var(--cream); }
+.eyebrow { margin: 0 0 1.1rem; font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+h1, h2, h3, blockquote { font-family: var(--serif); font-weight: 500; }
+h1 { font-size: clamp(4rem, 8vw, 8rem); line-height: .92; margin: 0 0 2rem; letter-spacing: -.045em; }
+h1 em, h2 em { color: var(--clay); font-style: italic; }
+.hero-copy { max-width: 420px; font-size: 1.05rem; margin-bottom: 2.2rem; }
+.button { display: inline-flex; gap: 1.2rem; align-items: center; padding: 1rem 1.35rem; background: var(--ink); color: white; text-transform: uppercase; letter-spacing: .11em; font-size: .72rem; transition: transform .2s, opacity .2s; }
+.button:hover { transform: translateY(-2px); opacity: .9; }
+.hero-art { min-height: 560px; position: relative; display: grid; place-items: center; }
+.art-card { position: absolute; display: grid; place-items: center; }
+.art-card-main { width: 76%; height: 90%; background: linear-gradient(145deg,#d8c7b6,#a66d59 60%,#4c4540); color: rgba(255,255,255,.8); font: 500 10rem var(--serif); }
+.art-card-small { width: 42%; height: 28%; right: 0; bottom: 5%; background: #e7dfd2; padding: 1rem; text-align: center; font: 600 1.5rem var(--serif); letter-spacing: .18em; box-shadow: 0 15px 40px rgba(0,0,0,.12); }
+.art-card-small small { font: 600 .52rem var(--sans); letter-spacing: .18em; }
+.intro { padding: 10vw 10vw 9vw; text-align: center; max-width: 900px; margin: auto; }
+.intro h2, .section-heading h2, .about h2, .contact h2 { font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: 1; margin: 0 0 1.8rem; letter-spacing: -.035em; }
+.intro > p:last-child { max-width: 590px; margin: auto; color: #655d57; }
+.section { padding: 7vw 8vw; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 3rem; }
+.section-number { font-size: .7rem; letter-spacing: .15em; }
+.collection-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; }
+.collection { min-height: 570px; position: relative; overflow: hidden; display: flex; align-items: end; padding: 2rem; }
+.collection::before { content:""; position:absolute; inset:0; transition: transform .5s; }
+.collection:hover::before { transform: scale(1.04); }
+.collection-1::before { background: linear-gradient(145deg,#d9d0c4,#9d8774 55%,#655b52); }
+.collection-2::before { background: linear-gradient(145deg,#c7beb0,#b77761 50%,#4a3933); }
+.collection-3::before { background: linear-gradient(145deg,#c6cdbb,#8d8f78 50%,#4d5145); }
+.collection-label { position: relative; color: white; z-index: 1; text-shadow: 0 2px 18px rgba(0,0,0,.25); }
+.collection-label span { font-size: .65rem; letter-spacing: .15em; }
+.collection-label h3 { font-size: 2rem; margin: .2rem 0; }
+.collection-label p { margin: 0; font-size: .85rem; max-width: 230px; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 9vw; align-items: center; background: #eee8dd; }
+.about-visual { aspect-ratio: 4/5; display:grid; place-items:center; background: linear-gradient(145deg,#b5a797,#80685b 60%,#403936); color: white; font: 500 clamp(3rem,7vw,7rem) var(--serif); letter-spacing: .12em; }
+.about-copy > p:not(.eyebrow) { color: #655d57; max-width: 520px; }
+.text-link { display:inline-flex; gap:.8rem; margin-top: 1rem; padding-bottom:.4rem; border-bottom:1px solid var(--ink); text-transform:uppercase; font-size:.72rem; letter-spacing:.13em; }
+.quote { padding: 11vw 8vw; text-align:center; background: var(--ink); color: var(--paper); }
+.quote-mark { font: 5rem var(--serif); height: 50px; }
+blockquote { font-size: clamp(2.2rem, 5vw, 5rem); line-height: 1.08; margin: 1rem 0 1.5rem; }
+.quote p { font-size: .7rem; letter-spacing: .18em; text-transform:uppercase; }
+.contact { display:grid; grid-template-columns: 1fr 1fr; gap:8vw; align-items:center; }
+.contact-box { border:1px solid var(--line); padding: 3rem; }
+.contact-box p:first-child { font-family:var(--serif); font-size:1.7rem; margin-top:0; }
+.muted { color:#716963; font-size:.9rem; }
+.button-dark { margin-top:1rem; cursor:pointer; }
+.contact-message { color: var(--clay); font-size:.8rem; }
+footer { padding: 3rem 8vw; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.72rem; color:#716963; }
+.footer-logo { color:var(--ink); }
+@media (max-width: 800px) {
+  .site-header { height:70px; }
+  .menu-toggle { display:block; }
+  .nav { display:none; position:absolute; top:70px; left:0; right:0; padding:1.5rem 6vw; background:var(--paper); flex-direction:column; border-bottom:1px solid var(--line); }
+  .nav.open { display:flex; }
+  .hero { grid-template-columns:1fr; padding: 15vw 7vw; }
+  .hero-art { min-height: 430px; }
+  .art-card-main { width:80%; height:90%; }
+  .collection-grid, .about, .contact { grid-template-columns:1fr; }
+  .collection { min-height:460px; }
+  .section { padding: 15vw 7vw; }
+  .section-heading { align-items:start; flex-direction:column; gap:1rem; }
+  .about { gap:3rem; }
+  .contact-box { padding:2rem; }
+  footer { padding:2rem 7vw; }
+}

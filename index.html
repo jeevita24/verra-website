@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VERRA — women's clothing in Goa. Your outfit is the reflection of what you are.">
+  <title>VERRA | Women's Clothing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#home" aria-label="VERRA home">VERRA</a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#collections">Collections</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">WOMEN'S CLOTHING · GOA</p>
+        <h1>Wear your<br><em>expression.</em></h1>
+        <p class="hero-copy">Your outfit is the reflection of what you are.</p>
+        <a class="button" href="#collections">Explore Collection <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-label="Fashion collection preview">
+        <div class="art-card art-card-main"><span>V</span></div>
+        <div class="art-card art-card-small">VERRA<br><small>NEW SEASON</small></div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <p class="eyebrow">THE VERRA EDIT</p>
+      <h2>Style that feels<br><em>like you.</em></h2>
+      <p>Thoughtfully selected women's fashion designed for effortless confidence, from everyday moments to unforgettable evenings.</p>
+    </section>
+
+    <section id="collections" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">OUR COLLECTIONS</p>
+          <h2>Find your <em>look.</em></h2>
+        </div>
+        <span class="section-number">01 / 03</span>
+      </div>
+      <div class="collection-grid">
+        <article class="collection collection-1">
+          <div class="collection-label"><span>01</span><h3>Everyday Edit</h3><p>Easy silhouettes for everyday confidence.</p></div>
+        </article>
+        <article class="collection collection-2">
+          <div class="collection-label"><span>02</span><h3>Statement</h3><p>Pieces made to be remembered.</p></div>
+        </article>
+        <article class="collection collection-3">
+          <div class="collection-label"><span>03</span><h3>Occasion</h3><p>Elegant styles for your special moments.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about section">
+      <div class="about-visual"><span>VERRA</span></div>
+      <div class="about-copy">
+        <p class="eyebrow">ABOUT VERRA</p>
+        <h2>Fashion is more than what you wear.</h2>
+        <p>VERRA is a women's clothing brand from Goa, created for women who want their style to feel personal, effortless and confident.</p>
+        <p>We believe the right outfit doesn't change who you are — it lets more of you show.</p>
+        <a class="text-link" href="#contact">Discover VERRA <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="quote-mark">“</div>
+      <blockquote>Your outfit is the reflection<br>of what you are.</blockquote>
+      <p>— VERRA</p>
+    </section>
+
+    <section id="contact" class="contact section">
+      <div>
+        <p class="eyebrow">GET IN TOUCH</p>
+        <h2>Let's talk<br><em>fashion.</em></h2>
+      </div>
+      <div class="contact-box">
+        <p>Our contact details are coming soon.</p>
+        <p class="muted">Add your WhatsApp, Instagram, email and store details here when you're ready.</p>
+        <button class="button button-dark" type="button" onclick="showMessage()">Notify me when details are added</button>
+        <p id="contact-message" class="contact-message" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">VERRA</div>
+    <p>Women's clothing · Goa, India</p>
+    <p>© <span id="year"></span> VERRA. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
