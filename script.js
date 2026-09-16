@@ -21,3 +21,108 @@ function showMessage() {
   document.getElementById("contact-message").textContent =
     "Thank you! Contact details will be added soon.";
 }
+
+document.querySelectorAll(".buy-button").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const product = button.dataset.product;
+    const amount = Number(button.dataset.amount);
+    const sizeSelect = button.dataset.sizeSelect ? document.getElementById(button.dataset.sizeSelect) : null;
+    const size = sizeSelect ? sizeSelect.value : "";
+    button.disabled = true;
+    button.textContent = "Opening…";
+    try {
+      const response = await fetch("/api/create-order", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({product, amount, size})
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Unable to create order.");
+      const options = {
+        key: data.key,
+        amount: data.amount,
+        currency: "INR",
+        name: "VERRA",
+        description: size ? `${product} · Size ${size}` : product,
+        order_id: data.order_id,
+        theme: {color:"#111111"},
+        handler: async function (response) {
+          const verify = await fetch("/api/verify-payment", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(response)
+          });
+          const result = await verify.json();
+          alert(result.success ? "Payment successful. Thank you for shopping with VERRA!" : "Payment verification failed. Please contact VERRA.");
+        },
+        modal: {ondismiss: () => {button.disabled=false;button.textContent="Buy now";}}
+      };
+      new Razorpay(options).open();
+      button.textContent = "Payment open";
+    } catch (error) {
+      console.error(error);
+      alert("Checkout is not connected yet. Complete the Razorpay setup first.");
+      button.disabled = false;
+      button.textContent = "Buy now";
+    }
+  });
+});
+
+
+// Product image modal gallery
+const productModal = document.getElementById("product-modal");
+const modalProductImage = document.getElementById("modal-product-image");
+const modalImageLabel = document.getElementById("modal-image-label");
+const modalDots = [...document.querySelectorAll(".modal-dot")];
+const modalImages = [
+  { src: "assets/black-m-top.jpg", label: "Product view" },
+  { src: "assets/black-m-top-model.jpg", label: "Worn on model" }
+];
+let modalIndex = 0;
+
+function setModalImage(index) {
+  modalIndex = (index + modalImages.length) % modalImages.length;
+  modalProductImage.src = modalImages[modalIndex].src;
+  modalProductImage.alt = modalIndex === 0
+    ? "Black M Top with delicate floral embroidery"
+    : "Model wearing the Black M Top with delicate floral embroidery";
+  modalImageLabel.textContent = modalImages[modalIndex].label;
+  modalDots.forEach((dot, i) => dot.classList.toggle("is-active", i === modalIndex));
+}
+
+function openProductModal() {
+  setModalImage(0);
+  productModal.classList.add("is-open");
+  productModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeProductModal() {
+  productModal.classList.remove("is-open");
+  productModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+document.querySelectorAll("[data-modal-open]").forEach((trigger) => {
+  trigger.addEventListener("click", openProductModal);
+  trigger.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProductModal();
+    }
+  });
+});
+document.querySelectorAll("[data-modal-close]").forEach((el) => {
+  el.addEventListener("click", closeProductModal);
+});
+document.querySelector("[data-modal-prev]").addEventListener("click", () => setModalImage(modalIndex - 1));
+document.querySelector("[data-modal-next]").addEventListener("click", () => setModalImage(modalIndex + 1));
+modalDots.forEach((dot) => {
+  dot.addEventListener("click", () => setModalImage(Number(dot.dataset.modalIndex)));
+});
+document.addEventListener("keydown", (event) => {
+  if (!productModal.classList.contains("is-open")) return;
+  if (event.key === "Escape") closeProductModal();
+  if (event.key === "ArrowLeft") setModalImage(modalIndex - 1);
+  if (event.key === "ArrowRight") setModalImage(modalIndex + 1);
+});
