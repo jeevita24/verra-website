@@ -21,3 +21,4 @@ Open `index.html` in a browser.
 
 ## Customize later
 Replace the placeholder contact section with your WhatsApp number, Instagram, email, address, and real product photos.
+Payment setup update
