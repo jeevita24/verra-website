@@ -6,15 +6,24 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { product, amount } = req.body || {};
+    const { product, amount, size, name, email, phone } = req.body || {};
 
     if (
       !product ||
       !Number.isFinite(Number(amount)) ||
-      Number(amount) <= 0
+      Number(amount) <= 0 ||
+      !name ||
+      !email ||
+      !phone
     ) {
       return res.status(400).json({
-        error: "Invalid product or amount"
+        error: "Please provide product, amount, name, email and phone."
+      });
+    }
+
+    if (!email.includes("@")) {
+      return res.status(400).json({
+        error: "Please provide a valid email address."
       });
     }
 
@@ -28,7 +37,11 @@ module.exports = async (req, res) => {
       currency: "INR",
       receipt: `verra_${Date.now()}`,
       notes: {
-        product
+        product,
+        size: size || "",
+        customer_name: name,
+        customer_email: email,
+        customer_phone: phone
       }
     });
 
