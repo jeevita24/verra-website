@@ -26,18 +26,52 @@ document.querySelectorAll(".buy-button").forEach((button) => {
   button.addEventListener("click", async () => {
     const product = button.dataset.product;
     const amount = Number(button.dataset.amount);
-    const sizeSelect = button.dataset.sizeSelect ? document.getElementById(button.dataset.sizeSelect) : null;
+
+    const sizeSelect = button.dataset.sizeSelect
+      ? document.getElementById(button.dataset.sizeSelect)
+      : null;
+
     const size = sizeSelect ? sizeSelect.value : "";
+
+    const name = document.getElementById("customer-name")?.value.trim() || "";
+    const email = document.getElementById("customer-email")?.value.trim() || "";
+    const phone = document.getElementById("customer-phone")?.value.trim() || "";
+
+    if (!name || !email || !phone) {
+      alert("Please enter your name, email and WhatsApp / phone number.");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     button.disabled = true;
     button.textContent = "Opening…";
+
     try {
       const response = await fetch("/api/create-order", {
         method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({product, amount, size})
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          product,
+          amount,
+          size,
+          name,
+          email,
+          phone
+        })
       });
+
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Unable to create order.");
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to create order.");
+      }
+
       const options = {
         key: data.key,
         amount: data.amount,
@@ -45,25 +79,72 @@ document.querySelectorAll(".buy-button").forEach((button) => {
         name: "VERRA",
         description: size ? `${product} · Size ${size}` : product,
         order_id: data.order_id,
-        theme: {color:"#111111"},
-        handler: async function (response) {
-          const verify = await fetch("/api/verify-payment", {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(response)
-          });
-          const result = await verify.json();
-          alert(result.success ? "Payment successful. Thank you for shopping with VERRA!" : "Payment verification failed. Please contact VERRA.");
+
+        prefill: {
+          name,
+          email,
+          contact: phone
         },
-        modal: {ondismiss: () => {button.disabled=false;button.textContent="Buy now";}}
+
+        theme: {
+          color: "#111111"
+        },
+
+        handler: async function (paymentResponse) {
+          try {
+            const verify = await fetch("/api/verify-payment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                ...paymentResponse,
+                product,
+                size,
+                name,
+                email,
+                phone,
+                amount
+              })
+            });
+
+            const result = await verify.json();
+
+            if (result.success) {
+              alert(
+                "Payment successful! Your VERRA order confirmation has been sent to your email."
+              );
+            } else {
+              alert(
+                "Payment received, but confirmation is still being processed."
+              );
+            }
+          } catch (error) {
+            console.error(error);
+            alert(
+              "Payment received. Your order confirmation is being processed."
+            );
+          }
+        },
+
+        modal: {
+          ondismiss: () => {
+            button.disabled = false;
+            button.textContent = "Buy now · ₹800";
+          }
+        }
       };
-      new Razorpay(options).open();
+
+      const razorpay = new Razorpay(options);
+      razorpay.open();
+
       button.textContent = "Payment open";
     } catch (error) {
       console.error(error);
-      alert("Checkout is not connected yet. Complete the Razorpay setup first.");
+      alert("Checkout could not be opened. Please try again.");
+
       button.disabled = false;
-      button.textContent = "Buy now";
+      button.textContent = "Buy now · ₹800";
     }
   });
 });
