@@ -92,6 +92,23 @@
             <option value="Custom">Custom size</option>
           </select>
           <p class="size-note">Customizable sizes available.</p>
+          <div class="customer-details">
+  <p class="customer-heading">Order details</p>
+
+  <label class="size-label" for="customer-name">Your name</label>
+  <input id="customer-name" class="customer-input" type="text"
+    autocomplete="name" placeholder="Full name" maxlength="80">
+
+  <label class="size-label" for="customer-email">Email</label>
+  <input id="customer-email" class="customer-input" type="email"
+    autocomplete="email" placeholder="you@example.com" maxlength="120">
+
+  <label class="size-label" for="customer-phone">WhatsApp / phone</label>
+  <input id="customer-phone" class="customer-input" type="tel"
+    autocomplete="tel" placeholder="10-digit mobile number" maxlength="20">
+
+  <p class="customer-note">We'll use these details for your order confirmation.</p>
+          </div>
           <button class="button button-dark buy-button" type="button" data-product="Black M Top" data-amount="800" data-size-select="black-m-top-size">Buy now · ₹800</button>
         </div>
       </article>
