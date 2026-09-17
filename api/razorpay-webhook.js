@@ -24,7 +24,9 @@ function getRawBody(req) {
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return res.status(405).json({
+      error: "Method not allowed"
+    });
   }
 
   try {
@@ -39,7 +41,10 @@ module.exports = async (req, res) => {
     }
 
     const expectedSignature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_WEBHOOK_SECRET)
+      .createHmac(
+        "sha256",
+        process.env.RAZORPAY_WEBHOOK_SECRET
+      )
       .update(rawBody)
       .digest("hex");
 
@@ -50,6 +55,7 @@ module.exports = async (req, res) => {
     }
 
     const event = JSON.parse(rawBody);
+    const eventId = req.headers["x-razorpay-event-id"];
 
     if (event.event !== "order.paid") {
       return res.status(200).json({
@@ -76,11 +82,13 @@ module.exports = async (req, res) => {
     const orderId = order?.id || "Not available";
 
     const ownerEmail =
-      process.env.VERRA_OWNER_EMAIL || "orders@officialverra.in";
+      process.env.VERRA_OWNER_EMAIL ||
+      "orders@officialverra.in";
 
     const customerEmailHtml = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#111;">
         <h1 style="letter-spacing:2px;">VERRA</h1>
+
         <h2>Order confirmed ✨</h2>
 
         <p>Thank you, ${name || "for shopping with us"}.</p>
@@ -94,6 +102,7 @@ module.exports = async (req, res) => {
         </div>
 
         <p>Your payment has been successfully received.</p>
+
         <p>We will process your order shortly.</p>
 
         <p style="margin-top:30px;">
@@ -107,6 +116,7 @@ module.exports = async (req, res) => {
     const ownerEmailHtml = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#111;">
         <h1 style="letter-spacing:2px;">VERRA</h1>
+
         <h2>New order received 🛍️</h2>
 
         <div style="padding:20px;background:#f7f7f7;margin:20px 0;">
@@ -131,10 +141,13 @@ module.exports = async (req, res) => {
         requests.push(
           fetch("https://api.resend.com/emails", {
             method: "POST",
+
             headers: {
               Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Idempotency-Key": `order.paid/customer/${eventId || orderId}`
             },
+
             body: JSON.stringify({
               from: "VERRA Orders <orders@officialverra.in>",
               to: [customerEmail],
@@ -148,10 +161,13 @@ module.exports = async (req, res) => {
       requests.push(
         fetch("https://api.resend.com/emails", {
           method: "POST",
+
           headers: {
             Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Idempotency-Key": `order.paid/owner/${eventId || orderId}`
           },
+
           body: JSON.stringify({
             from: "VERRA Orders <orders@officialverra.in>",
             to: [ownerEmail],
@@ -176,9 +192,5 @@ module.exports = async (req, res) => {
       success: false,
       error: "Webhook processing failed"
     });
-  }
-};module.exports.config = {
-  api: {
-    bodyParser: false
   }
 };
