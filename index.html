@@ -3,178 +3,859 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="VERRA — women's clothing in Goa. Your outfit is the reflection of what you are.">
-  <title>VERRA | Women's Clothing</title>
+
+  <title>VERRA — Your outfit is the reflection of what you are.</title>
+
+  <meta
+    name="description"
+    content="VERRA — refined women's fashion designed for confidence, elegance and everyday expression."
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
+
 <body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header class="site-header">
-    <a class="logo" href="#home" aria-label="VERRA home">VERRA</a>
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#home">Home</a>
-      <a href="#collections">Collections</a>
-      <a href="#shop">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="header-inner">
+
+      <a href="#top" class="brand" aria-label="VERRA Home">
+        VERRA
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#collections">Collections</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#policies">Policies</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+    </div>
   </header>
 
-  <main>
-    <section id="home" class="hero">
+
+  <main id="top">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
       <div class="hero-content">
-        <p class="eyebrow">WOMEN'S CLOTHING · GOA</p>
-        <h1>Wear your<br><em>expression.</em></h1>
-        <p class="hero-copy">Your outfit is the reflection of what you are.</p>
-        <a class="button" href="#collections">Explore Collection <span>→</span></a>
+
+        <p class="eyebrow">VERRA WOMEN'S WEAR</p>
+
+        <h1>
+          Timeless pieces<br>
+          <em>for modern you.</em>
+        </h1>
+
+        <p class="hero-text">
+          Thoughtfully designed women's clothing made to reflect
+          your individuality, confidence and effortless style.
+        </p>
+
+        <a href="#shop" class="button button-dark">
+          Shop the collection
+        </a>
+
       </div>
-      <div class="hero-art" aria-label="Fashion collection preview">
-        <div class="art-card art-card-main"><span>V</span></div>
-        <div class="art-card art-card-small">VERRA<br><small>NEW SEASON</small></div>
-      </div>
+
     </section>
 
-    <section class="intro">
-      <p class="eyebrow">THE VERRA EDIT</p>
-      <h2>Style that feels<br><em>like you.</em></h2>
-      <p>Thoughtfully selected women's fashion designed for effortless confidence, from everyday moments to unforgettable evenings.</p>
-    </section>
+
+    <!-- =========================
+         COLLECTIONS
+    ========================== -->
 
     <section id="collections" class="section">
+
       <div class="section-heading">
+
         <div>
           <p class="eyebrow">OUR COLLECTIONS</p>
-          <h2>Find your <em>look.</em></h2>
+
+          <h2>
+            Find your <em>look.</em>
+          </h2>
         </div>
-        <span class="section-number">01 / 03</span>
+
+        <span class="section-number">01 / 02</span>
+
       </div>
-      <div class="collection-grid">
-        <article class="collection collection-1">
-          <div class="collection-label"><span>01</span><h3>Everyday Edit</h3><p>Easy silhouettes for everyday confidence.</p></div>
-        </article>
-        <article class="collection collection-2">
-          <div class="collection-label"><span>02</span><h3>Statement</h3><p>Pieces made to be remembered.</p></div>
-        </article>
-        <article class="collection collection-3">
-          <div class="collection-label"><span>03</span><h3>Occasion</h3><p>Elegant styles for your special moments.</p></div>
-        </article>
-      </div>
-    </section>
 
-    <section id="shop" class="shop section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">SHOP VERRA</p>
-          <h2>Made to feel <em>like you.</em></h2>
-        </div>
-        <span class="section-number">01 / 01</span>
-      </div>
-      <article class="product-card">
-        <div class="product-image-wrap product-image-clickable" role="button" tabindex="0" aria-label="View Black M Top on model" data-modal-open>
-          <img src="assets/black-m-top.jpg" alt="Black M Top with delicate floral embroidery">
-          <span class="image-view-hint">View on model ↗</span>
-        </div>
-        <div class="product-info">
-          <p class="eyebrow">EVERYDAY EDIT</p>
-          <h3>Black M Top</h3>
-          <p class="product-price">₹800</p>
-          <p class="product-description">A timeless black sleeveless top finished with delicate floral embroidery. Easy to style, effortless to wear, and made for everyday confidence.</p>
-          <label class="size-label" for="black-m-top-size">Size</label>
-          <select id="black-m-top-size" class="size-select" aria-label="Choose size">
-            <option value="S">S</option>
-            <option value="M" selected>M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="Custom">Custom size</option>
-          </select>
-          <p class="size-note">Customizable sizes available.</p>
-          <div class="customer-details">
-  <p class="customer-heading">Order details</p>
 
-  <label class="size-label" for="customer-name">Your name</label>
-  <input id="customer-name" class="customer-input" type="text"
-    autocomplete="name" placeholder="Full name" maxlength="80">
+      <div class="collection-grid collection-grid-two">
 
-  <label class="size-label" for="customer-email">Email</label>
-  <input id="customer-email" class="customer-input" type="email"
-    autocomplete="email" placeholder="you@example.com" maxlength="120">
+        <a
+          class="collection collection-1"
+          href="#shop"
+          aria-label="Shop Tops collection"
+        >
 
-  <label class="size-label" for="customer-phone">WhatsApp / phone</label>
-  <input id="customer-phone" class="customer-input" type="tel"
-    autocomplete="tel" placeholder="10-digit mobile number" maxlength="20">
+          <div class="collection-label">
 
-  <p class="customer-note">We'll use these details for your order confirmation.</p>
+            <span>01</span>
+
+            <h3>Tops</h3>
+
+            <p>
+              Effortless silhouettes for every day.
+            </p>
+
           </div>
-          <button class="button button-dark buy-button" type="button" data-product="Black M Top" data-amount="800" data-size-select="black-m-top-size">Buy now · ₹800</button>
+
+        </a>
+
+
+        <a
+          class="collection collection-2"
+          href="#shop"
+          aria-label="Shop Dresses collection"
+        >
+
+          <div class="collection-label">
+
+            <span>02</span>
+
+            <h3>Dresses</h3>
+
+            <p>
+              Elegant pieces for every occasion.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SHOP
+    ========================== -->
+
+    <section id="shop" class="section shop-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="eyebrow">TOPS</p>
+
+          <h2>
+            The <em>edit.</em>
+          </h2>
+
         </div>
+
+        <span class="section-number">02 / 02</span>
+
+      </div>
+
+
+      <div class="product-card">
+
+        <div class="product-image-wrap">
+
+          <img
+            src="assets/black-m-top.jpg"
+            alt="Black M Top"
+            class="product-image"
+          >
+
+        </div>
+
+
+        <div class="product-info">
+
+          <p class="eyebrow">
+            VERRA ESSENTIALS
+          </p>
+
+          <h2 class="product-title">
+            Black M Top
+          </h2>
+
+          <p class="product-price">
+            ₹800
+          </p>
+
+          <p class="product-description">
+            A timeless black sleeveless top finished with delicate
+            floral embroidery. Easy to style, effortless to wear,
+            and made for everyday confidence.
+          </p>
+
+
+          <!-- SIZE -->
+
+          <div class="size-selector">
+
+            <label
+              class="size-label"
+              for="black-m-top-size"
+            >
+              Select size
+            </label>
+
+            <select
+              id="black-m-top-size"
+              class="size-select"
+            >
+
+              <option value="S">S</option>
+              <option value="M" selected>M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="Custom">Custom</option>
+
+            </select>
+
+            <p class="size-note">
+              Select Custom if you require a custom size.
+            </p>
+
+          </div>
+
+
+          <!-- CUSTOMER DETAILS -->
+
+          <div class="customer-details">
+
+            <p class="customer-heading">
+              Order details
+            </p>
+
+
+            <label
+              class="size-label"
+              for="customer-name"
+            >
+              Your name
+            </label>
+
+            <input
+              id="customer-name"
+              class="customer-input"
+              type="text"
+              autocomplete="name"
+              placeholder="Full name"
+              maxlength="80"
+            >
+
+
+            <label
+              class="size-label"
+              for="customer-email"
+            >
+              Email
+            </label>
+
+            <input
+              id="customer-email"
+              class="customer-input"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              maxlength="120"
+            >
+
+
+            <label
+              class="size-label"
+              for="customer-phone"
+            >
+              WhatsApp / phone
+            </label>
+
+            <input
+              id="customer-phone"
+              class="customer-input"
+              type="tel"
+              autocomplete="tel"
+              placeholder="10-digit mobile number"
+              maxlength="20"
+            >
+
+
+            <p class="customer-note">
+              We'll use these details for your order confirmation.
+            </p>
+
+          </div>
+
+
+          <!-- BUY BUTTON -->
+
+          <button
+            class="button button-dark buy-button"
+            type="button"
+            data-product="Black M Top"
+            data-amount="800"
+            data-size-select="black-m-top-size"
+          >
+            Buy now · ₹800
+          </button>
+
+
+          <p class="payment-note">
+            Secure payment powered by Razorpay.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about" class="section editorial-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            ABOUT VERRA
+          </p>
+
+          <h2>
+            Designed to be <em>you.</em>
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="policy-frame">
+
+        <div class="policy-content">
+
+          <p class="policy-lead">
+            VERRA is a women's fashion label created around
+            individuality, elegance and effortless confidence.
+          </p>
+
+          <p>
+            We believe clothing is more than something you wear.
+            It is part of how you express yourself, how you carry
+            yourself and how you feel in your own skin.
+          </p>
+
+          <p>
+            Our collections focus on refined silhouettes,
+            thoughtful details and versatile pieces designed
+            to become part of your personal wardrobe.
+          </p>
+
+          <p>
+            Every VERRA piece is created with the intention of
+            making everyday dressing feel considered, confident
+            and effortlessly beautiful.
+          </p>
+
+          <div class="policy-signature">
+            <span>VERRA</span>
+            <small>
+              Your outfit is the reflection of what you are.
+            </small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         POLICIES
+    ========================== -->
+
+    <section id="policies" class="section policy-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            VERRA INFORMATION
+          </p>
+
+          <h2>
+            Our <em>policies.</em>
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <!-- EXCHANGE & RETURN -->
+
+      <article class="policy-card">
+
+        <p class="policy-number">
+          01
+        </p>
+
+        <h3>
+          Exchange & Return Policy
+        </h3>
+
+        <p>
+          At VERRA, we carefully prepare every order before
+          dispatch. For this reason, change-of-mind returns
+          are not accepted.
+        </p>
+
+        <h4>
+          Exchange window
+        </h4>
+
+        <p>
+          Eligible products may be exchanged within
+          <strong>3 days from the date of delivery</strong>.
+          The exchange request must be communicated to VERRA
+          within this period.
+        </p>
+
+        <h4>
+          Exchange conditions
+        </h4>
+
+        <p>
+          To qualify for an exchange, the product must be
+          unused, unworn, unwashed and in its original condition.
+          Original tags, packaging and other product components
+          should remain intact.
+        </p>
+
+        <p>
+          Products showing signs of use, washing, alteration,
+          damage, stains, perfume or other wear may not qualify
+          for exchange.
+        </p>
+
+        <h4>
+          Damaged, incorrect or defective products
+        </h4>
+
+        <p>
+          If you receive a product that is damaged, defective,
+          incorrect or materially different from what was ordered,
+          please contact us promptly with your order details and
+          clear photographs of the product and packaging.
+        </p>
+
+        <p>
+          Such cases will be reviewed and addressed in accordance
+          with applicable consumer protection laws.
+        </p>
+
+        <h4>
+          Exchange shipping
+        </h4>
+
+        <p>
+          For an approved exchange, the applicable exchange
+          shipping cost will be borne by <strong>VERRA</strong>.
+        </p>
+
+        <p>
+          Please note that an exchange is subject to product
+          availability.
+        </p>
+
       </article>
+
+
+      <!-- PRIVACY -->
+
+      <article class="policy-card">
+
+        <p class="policy-number">
+          02
+        </p>
+
+        <h3>
+          Privacy Policy
+        </h3>
+
+        <p>
+          VERRA respects your privacy and is committed to
+          handling your personal information responsibly.
+        </p>
+
+        <h4>
+          Information we collect
+        </h4>
+
+        <p>
+          When you place an order, we may collect information
+          such as your name, email address, phone number,
+          order information, selected size and payment-related
+          transaction information necessary to process your order.
+        </p>
+
+        <h4>
+          How we use your information
+        </h4>
+
+        <p>
+          Your information may be used to process and fulfil
+          orders, communicate order updates, provide customer
+          support, handle exchanges and comply with applicable
+          legal requirements.
+        </p>
+
+        <h4>
+          Payments
+        </h4>
+
+        <p>
+          Payments are processed through our payment service
+          provider. VERRA does not need to store your complete
+          card or banking credentials on its website.
+        </p>
+
+        <h4>
+          Information security
+        </h4>
+
+        <p>
+          We take reasonable measures to protect personal
+          information against unauthorised access, misuse,
+          alteration or disclosure.
+        </p>
+
+        <h4>
+          Your choices
+        </h4>
+
+        <p>
+          You may contact us regarding your personal information,
+          subject to applicable law and verification requirements.
+        </p>
+
+        <p>
+          For privacy-related questions, contact:
+          <strong>officialverrafashion@gmail.com</strong>
+        </p>
+
+      </article>
+
+
+      <!-- TERMS -->
+
+      <article class="policy-card">
+
+        <p class="policy-number">
+          03
+        </p>
+
+        <h3>
+          Terms & Conditions
+        </h3>
+
+        <p>
+          By using the VERRA website or placing an order,
+          you agree to the terms described below.
+        </p>
+
+        <h4>
+          Product information
+        </h4>
+
+        <p>
+          We make reasonable efforts to display product
+          descriptions, photographs, sizes and prices accurately.
+          Colours may appear slightly different depending on
+          your device or screen settings.
+        </p>
+
+        <h4>
+          Pricing
+        </h4>
+
+        <p>
+          Product prices are displayed on the website and may
+          be changed from time to time. The applicable price
+          at the time an order is successfully placed will
+          generally apply, subject to correction of obvious
+          errors and applicable law.
+        </p>
+
+        <h4>
+          Order acceptance
+        </h4>
+
+        <p>
+          Placing an order constitutes a request to purchase.
+          VERRA reserves the right to cancel an order where
+          there is a genuine issue involving product availability,
+          pricing, payment, suspected misuse or other legitimate
+          circumstances.
+        </p>
+
+        <h4>
+          Customer responsibility
+        </h4>
+
+        <p>
+          Customers are responsible for providing accurate
+          contact and order information at checkout.
+        </p>
+
+        <h4>
+          Intellectual property
+        </h4>
+
+        <p>
+          The VERRA name, branding, photographs, graphics,
+          written content and other website materials are
+          intended for VERRA's use and may not be reproduced
+          or commercially used without permission.
+        </p>
+
+      </article>
+
+
+      <!-- SHIPPING -->
+
+      <article class="policy-card">
+
+        <p class="policy-number">
+          04
+        </p>
+
+        <h3>
+          Shipping & Delivery
+        </h3>
+
+        <p>
+          Orders are prepared for dispatch after successful
+          payment confirmation.
+        </p>
+
+        <p>
+          Delivery timelines may vary depending on destination,
+          courier availability, weather, public holidays and
+          circumstances outside VERRA's reasonable control.
+        </p>
+
+        <p>
+          Customers should ensure that the delivery information
+          supplied at checkout is accurate and complete.
+        </p>
+
+        <p>
+          Where a delivery is delayed by circumstances beyond
+          VERRA's control, we will make reasonable efforts to
+          assist with tracking and delivery coordination.
+        </p>
+
+      </article>
+
+
+      <!-- CANCELLATION -->
+
+      <article class="policy-card">
+
+        <p class="policy-number">
+          05
+        </p>
+
+        <h3>
+          Order Cancellation
+        </h3>
+
+        <p>
+          If you need to request cancellation of an order,
+          please contact VERRA as soon as possible at
+          <strong>officialverrafashion@gmail.com</strong>.
+        </p>
+
+        <p>
+          Cancellation requests can only be accommodated
+          where the order has not already been processed or
+          dispatched, subject to applicable law.
+        </p>
+
+        <p>
+          Once an order has been dispatched, it may no longer
+          be possible to cancel it through the normal
+          cancellation process.
+        </p>
+
+      </article>
+
+
+      <!-- CUSTOMER CARE -->
+
+      <article class="policy-card">
+
+        <p class="policy-number">
+          06
+        </p>
+
+        <h3>
+          Customer Care & Grievance
+        </h3>
+
+        <p>
+          We value every VERRA customer and aim to resolve
+          questions and concerns fairly and promptly.
+        </p>
+
+        <p>
+          For order support, exchanges, privacy questions or
+          other concerns, please contact:
+        </p>
+
+        <div class="contact-highlight">
+          officialverrafashion@gmail.com
+        </div>
+
+        <p>
+          Please include your order details where applicable
+          so that we can assist you efficiently.
+        </p>
+
+      </article>
+
     </section>
 
-    <section id="about" class="about section">
-      <div class="about-visual"><span>VERRA</span></div>
-      <div class="about-copy">
-        <p class="eyebrow">ABOUT VERRA</p>
-        <h2>Fashion is more than what you wear.</h2>
-        <p>VERRA is a women's clothing brand from Goa, created for women who want their style to feel personal, effortless and confident.</p>
-        <p>We believe the right outfit doesn't change who you are — it lets more of you show.</p>
-        <a class="text-link" href="#contact">Discover VERRA <span>→</span></a>
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section id="contact" class="section contact-section">
+
+      <div class="contact-inner">
+
+        <p class="eyebrow">
+          CUSTOMER CARE
+        </p>
+
+        <h2>
+          We'd love to<br>
+          <em>hear from you.</em>
+        </h2>
+
+        <p>
+          Questions about your order, sizing, exchanges or
+          anything VERRA? Our customer care team is here to help.
+        </p>
+
+        <a
+          href="mailto:officialverrafashion@gmail.com"
+          class="button button-dark"
+        >
+          Email VERRA
+        </a>
+
+        <p class="contact-email">
+          officialverrafashion@gmail.com
+        </p>
+
       </div>
+
     </section>
 
-    <section class="quote">
-      <div class="quote-mark">“</div>
-      <blockquote>Your outfit is the reflection<br>of what you are.</blockquote>
-      <p>— VERRA</p>
-    </section>
-
-    <section id="contact" class="contact section">
-      <div>
-        <p class="eyebrow">GET IN TOUCH</p>
-        <h2>Let's talk<br><em>fashion.</em></h2>
-      </div>
-      <div class="contact-box">
-        <p>Our contact details are coming soon.</p>
-        <p class="muted">Add your WhatsApp, Instagram, email and store details here when you're ready.</p>
-        <button class="button button-dark" type="button" onclick="showMessage()">Notify me when details are added</button>
-        <p id="contact-message" class="contact-message" role="status"></p>
-      </div>
-    </section>
-  <section class="payment-note" aria-label="Payments">
-      <p><strong>Secure checkout:</strong> Pay with UPI or debit/credit card through Razorpay.</p>
-    </section>
-  
-  <div class="product-modal" id="product-modal" aria-hidden="true">
-    <div class="product-modal-backdrop" data-modal-close></div>
-    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-label="Black M Top product images">
-      <button class="modal-close" type="button" aria-label="Close product images" data-modal-close>×</button>
-      <button class="modal-arrow modal-prev" type="button" aria-label="Previous image" data-modal-prev>‹</button>
-      <div class="modal-image-frame">
-        <img id="modal-product-image" src="assets/black-m-top.jpg" alt="Black M Top">
-      </div>
-      <button class="modal-arrow modal-next" type="button" aria-label="Next image" data-modal-next>›</button>
-      <div class="modal-caption">
-        <strong>Black M Top</strong>
-        <span id="modal-image-label">Product view</span>
-      </div>
-      <div class="modal-dots" aria-label="Product image selector">
-        <button type="button" class="modal-dot is-active" aria-label="Show product view" data-modal-index="0"></button>
-        <button type="button" class="modal-dot" aria-label="Show model view" data-modal-index="1"></button>
-      </div>
-    </div>
-  </div>
 
   </main>
 
-  <footer>
-    <div class="footer-logo">VERRA</div>
-    <p>Women's clothing · Goa, India</p>
-    <p>© <span id="year"></span> VERRA. All rights reserved.</p>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          VERRA
+        </div>
+
+        <p class="footer-tagline">
+          Your outfit is the reflection of what you are.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#policies">
+          Policies
+        </a>
+
+        <a href="#contact">
+          Customer Care
+        </a>
+
+        <a href="mailto:officialverrafashion@gmail.com">
+          Email
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <p>
+        © 2026 VERRA. All rights reserved.
+      </p>
+
+      <p>
+        Designed for women who wear their story.
+      </p>
+
+    </div>
+
   </footer>
 
+
+  <!-- =========================
+       SCRIPT
+  ========================== -->
+
   <script src="script.js"></script>
+
 </body>
-</html>
+        </html>
