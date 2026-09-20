@@ -106,3 +106,137 @@
   }
 
   .full-product {
+
+ /* VERRA — Product Size Chart */
+
+.product-size-details {
+  margin-top: 28px;
+  border-top: 1px solid rgba(42, 33, 28, 0.18);
+  padding-top: 18px;
+}
+
+.size-chart-button {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #2A211C;
+  list-style: none;
+  padding: 12px 0;
+}
+
+.size-chart-button::-webkit-details-marker {
+  display: none;
+}
+
+.size-chart-button::after {
+  content: "+";
+  margin-left: 12px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.product-size-details[open] .size-chart-button::after {
+  content: "−";
+}
+
+.product-size-panel {
+  margin-top: 22px;
+  padding: 28px;
+  background: #FFFCEF;
+  border: 1px solid rgba(42, 33, 28, 0.12);
+}
+
+.size-chart-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #6A5140;
+  margin-bottom: 24px;
+}
+
+.mini-size-chart {
+  margin-bottom: 32px;
+}
+
+.mini-size-chart h4 {
+  margin-bottom: 14px;
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2A211C;
+}
+
+.mini-size-chart .table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.mini-size-chart table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+}
+
+.mini-size-chart th,
+.mini-size-chart td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(42, 33, 28, 0.12);
+  white-space: nowrap;
+}
+
+.mini-size-chart th:first-child,
+.mini-size-chart td:first-child {
+  text-align: left;
+}
+
+.mini-size-chart th {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6A5140;
+}
+
+.mini-size-chart td {
+  color: #2A211C;
+}
+
+.length-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.length-options span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 11px 14px;
+  border: 1px solid rgba(42, 33, 28, 0.18);
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  color: #2A211C;
+  background: #FEF4CD;
+}
+
+@media (max-width: 700px) {
+
+  .product-size-panel {
+    padding: 20px 14px;
+  }
+
+  .mini-size-chart table {
+    min-width: 620px;
+  }
+
+  .size-chart-button {
+    font-size: 10px;
+  }
+
+}
