@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Order | VERRA</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="announcement">
+    MADE TO ORDER · READY TO WEAR · HANDCRAFTED FOR YOU
+  </div>
+
+
+  <header class="site-header">
+
+    <a href="index.html" class="logo">
+      VERRA
+    </a>
+
+    <nav class="desktop-navigation">
+      <a href="products.html">LEHENGAS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <button
+      class="menu-button"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      data-menu-open
+    >
+      MENU
+    </button>
+
+  </header>
+
+
+  <div class="menu-overlay" data-menu-close></div>
+
+
+  <aside class="mobile-menu">
+
+    <button
+      class="mobile-menu-close"
+      type="button"
+      data-menu-close
+    >
+      CLOSE
+    </button>
+
+    <nav class="mobile-navigation">
+
+      <a href="index.html">HOME</a>
+
+      <a href="products.html">LEHENGAS</a>
+
+      <a href="about.html">ABOUT VERRA</a>
+
+      <a href="policies.html">POLICIES</a>
+
+      <a href="terms.html">TERMS & CONDITIONS</a>
+
+      <a href="contact.html">CONTACT</a>
+
+    </nav>
+
+  </aside>
+
+
+  <main>
+
+    <section class="page-intro">
+
+      <p class="eyebrow">
+        VERRA ORDER
+      </p>
+
+      <h1>
+        Your order,<br>
+        your way.
+      </h1>
+
+      <p>
+        Choose your size, blouse preference and skirt length.
+        You can also tell us anything else you would like us
+        to know before we prepare your lehenga.
+      </p>
+
+    </section>
+
+
+    <section class="order-section">
+
+      <div class="order-intro">
+
+        <p class="eyebrow">
+          MADE FOR YOU
+        </p>
+
+        <h2>
+          Your order begins with a conversation.
+        </h2>
+
+        <p>
+          If you prefer writing instead of talking on a call,
+          that's completely fine. Share your requirements here
+          and we will review everything before preparing your order.
+        </p>
+
+      </div>
+
+
+      <form class="order-form">
+
+
+        <!-- PRODUCT -->
+
+        <div class="form-group">
+
+          <label for="product">
+            SELECT LEHENGA
+          </label>
+
+          <select id="product" name="product" required>
+
+            <option value="">
+              Select a lehenga
+            </option>
+
+            <option value="Rani">
+              Rani — ₹14,999
+            </option>
+
+            <option value="Mint">
+              Mint — ₹10,099
+            </option>
+
+            <option value="Plum">
+              Plum — ₹11,999
+            </option>
+
+            <option value="Ivory">
+              Ivory — ₹13,099
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- BLOUSE -->
+
+        <div class="form-group">
+
+          <label for="blouse">
+            BLOUSE
+          </label>
+
+          <select id="blouse" name="blouse" required>
+
+            <option value="">
+              Select blouse option
+            </option>
+
+            <option value="No blouse">
+              No blouse
+            </option>
+
+            <option value="Stitched Blouse">
+              Stitched Blouse — +₹599
+            </option>
+
+            <option value="Customized Blouse">
+              Customized Blouse — +₹798
+            </option>
+
+          </select>
+
+          <p class="form-note">
+            Customized blouse includes the stitched blouse
+            and an additional ₹199 customization charge.
+          </p>
+
+        </div>
+
+
+        <!-- BLOUSE SIZE -->
+
+        <div class="form-group">
+
+          <label for="blouse-size">
+            BLOUSE SIZE
+          </label>
+
+          <select id="blouse-size" name="blouse-size" required>
+
+            <option value="">
+              Select blouse size
+            </option>
+
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+            <option>3XL</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- SKIRT SIZE -->
+
+        <div class="form-group">
+
+          <label for="skirt-size">
+            SKIRT SIZE
+          </label>
+
+          <select id="skirt-size" name="skirt-size" required>
+
+            <option value="">
+              Select skirt size
+            </option>
+
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+            <option>3XL</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- SKIRT LENGTH -->
+
+        <div class="form-group">
+
+          <label for="skirt-length">
+            SKIRT LENGTH
+          </label>
+
+          <select id="skirt-length" name="skirt-length" required>
+
+            <option value="">
+              Select skirt length
+            </option>
+
+            <option>38"</option>
+            <option>39"</option>
+            <option>40"</option>
+            <option>41"</option>
+            <option>42"</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ADDITIONAL REQUIREMENTS -->
+
+        <div class="form-group form-group-large">
+
+          <label for="requirements">
+            ADDITIONAL REQUIREMENTS
+          </label>
+
+          <textarea
+            id="requirements"
+            name="requirements"
+            rows="7"
+            placeholder="Tell us anything you would like us to know about your lehenga, blouse, fit, measurements or customization..."
+          ></textarea>
+
+          <p class="form-note">
+            You can write your requirements here instead of discussing
+            them over a call. Please share only the details you are
+            comfortable sharing.
+          </p>
+
+        </div>
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <div class="form-group">
+
+          <label for="name">
+            YOUR NAME
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="phone">
+            PHONE / WHATSAPP
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Your phone number"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="email">
+            EMAIL
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email address"
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="order-submit-button"
+        >
+          SUBMIT ORDER REQUIREMENTS
+        </button>
+
+
+        <p class="order-submit-note">
+          Your order will not be prepared until we review
+          and confirm your requirements with you.
+        </p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="footer-brand">
+
+      <p class="footer-logo">
+        VERRA
+      </p>
+
+      <p>
+        Your outfit is the reflection of what you are.
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="index.html">HOME</a>
+
+      <a href="products.html">LEHENGAS</a>
+
+      <a href="about.html">ABOUT VERRA</a>
+
+      <a href="policies.html">POLICIES</a>
+
+      <a href="terms.html">TERMS & CONDITIONS</a>
+
+      <a href="contact.html">CONTACT</a>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
