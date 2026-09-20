@@ -1,8 +1,13 @@
+/* =========================================
+   VERRA MOBILE MENU
+========================================= */
+
 const menu = document.querySelector(".mobile-menu");
 const overlay = document.querySelector(".menu-overlay");
 const menuButton = document.querySelector(".menu-button");
 const openMenuButton = document.querySelector("[data-menu-open]");
 const closeButtons = document.querySelectorAll("[data-menu-close]");
+
 
 function openMenu() {
   if (!menu) return;
@@ -10,8 +15,13 @@ function openMenu() {
   menu.classList.add("is-open");
   overlay?.classList.add("is-visible");
   document.body.classList.add("menu-open");
-  menuButton?.setAttribute("aria-expanded", "true");
+
+  menuButton?.setAttribute(
+    "aria-expanded",
+    "true"
+  );
 }
+
 
 function closeMenu() {
   if (!menu) return;
@@ -19,40 +29,54 @@ function closeMenu() {
   menu.classList.remove("is-open");
   overlay?.classList.remove("is-visible");
   document.body.classList.remove("menu-open");
-  menuButton?.setAttribute("aria-expanded", "false");
+
+  menuButton?.setAttribute(
+    "aria-expanded",
+    "false"
+  );
 }
 
-menuButton?.addEventListener("click", openMenu);
-openMenuButton?.addEventListener("click", openMenu);
+
+menuButton?.addEventListener(
+  "click",
+  openMenu
+);
+
+
+openMenuButton?.addEventListener(
+  "click",
+  openMenu
+);
+
 
 closeButtons.forEach((button) => {
-  button.addEventListener("click", closeMenu);
+
+  button.addEventListener(
+    "click",
+    closeMenu
+  );
+
 });
+
 
 document
   .querySelectorAll(".mobile-navigation a")
   .forEach((link) => {
-    link.addEventListener("click", closeMenu);
+
+    link.addEventListener(
+      "click",
+      closeMenu
+    );
+
   });
 
 
-/* =========================
-   ESCAPE KEY
-========================= */
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeMenu();
-    closeCart();
-  }
-});
-
-
-/* =========================
-   VERRA PRODUCTS
-========================= */
+/* =========================================
+   VERRA PRODUCT DATA
+========================================= */
 
 const verraProducts = {
+
   Rani: {
     price: 14999,
     image: "assets/verra-lehenga-01.jpg"
@@ -72,280 +96,83 @@ const verraProducts = {
     price: 13099,
     image: "assets/verra-lehenga-04.jpg"
   }
+
 };
 
 
-/* =========================
-   CART
-========================= */
+/* =========================================
+   CART STORAGE
+========================================= */
 
 let verraCart = [];
 
+
 try {
-  verraCart =
-    JSON.parse(
-      localStorage.getItem("verraCart")
-    ) || [];
-} catch {
+
+  const savedCart =
+    localStorage.getItem("verraCart");
+
+  if (savedCart) {
+    verraCart = JSON.parse(savedCart);
+  }
+
+} catch (error) {
+
   verraCart = [];
+
 }
 
 
 function saveCart() {
+
   localStorage.setItem(
     "verraCart",
     JSON.stringify(verraCart)
   );
-}
 
-
-function getCartTotal() {
-  return verraCart.reduce(
-    (total, item) => {
-      return total + item.price * item.quantity;
-    },
-    0
-  );
 }
 
 
 function getCartCount() {
+
   return verraCart.reduce(
-    (total, item) => {
-      return total + item.quantity;
-    },
+    (total, item) =>
+      total + item.quantity,
     0
   );
+
 }
 
 
-/* =========================
-   PRODUCTS PAGE
-========================= */
+function getCartTotal() {
 
-const productsPage =
-  document.querySelector(".product-list");
-
-const header =
-  document.querySelector(".site-header");
-
-
-/* =========================
-   CART BUTTON
-========================= */
-
-if (
-  productsPage &&
-  header &&
-  !document.querySelector(".cart-button")
-) {
-
-  const cartButton =
-    document.createElement("button");
-
-  cartButton.className =
-    "cart-button";
-
-  cartButton.type =
-    "button";
-
-  cartButton.innerHTML = `
-    CART
-    <span class="cart-count">0</span>
-  `;
-
-  cartButton.addEventListener(
-    "click",
-    openCart
+  return verraCart.reduce(
+    (total, item) =>
+      total + (
+        item.price *
+        item.quantity
+      ),
+    0
   );
 
-  header.appendChild(
-    cartButton
-  );
 }
 
 
-/* =========================
-   PRODUCT BUTTONS
-========================= */
-
-document
-  .querySelectorAll(".full-product")
-  .forEach((productCard) => {
-
-    const productName =
-      productCard
-        .querySelector("h3")
-        ?.textContent
-        .trim();
-
-    if (
-      !productName ||
-      !verraProducts[productName]
-    ) {
-      return;
-    }
-
-
-    const productData =
-      verraProducts[productName];
-
-
-    const oldButton =
-      productCard.querySelector(
-        ".product-button"
-      );
-
-
-    if (!oldButton) {
-      return;
-    }
-
-
-    /* =========================
-       NEW BUTTON GROUP
-    ========================= */
-
-    const buttonGroup =
-      document.createElement(
-        "div"
-      );
-
-    buttonGroup.className =
-      "product-action-group";
-
-
-    buttonGroup.innerHTML = `
-
-      <button
-        type="button"
-        class="product-button buy-now-button"
-      >
-        BUY NOW
-      </button>
-
-      <button
-        type="button"
-        class="product-button add-cart-button"
-      >
-        ADD TO CART
-      </button>
-
-    `;
-
-
-    oldButton.replaceWith(
-      buttonGroup
-    );
-
-
-    /* =========================
-       BUY NOW
-    ========================= */
-
-    const buyButton =
-      buttonGroup.querySelector(
-        ".buy-now-button"
-      );
-
-
-    buyButton.addEventListener(
-      "click",
-      () => {
-
-        const orderPage =
-          "./order.html?product=" +
-          encodeURIComponent(
-            productName
-          );
-
-        window.location.href =
-          orderPage;
-
-      }
-    );
-
-
-    /* =========================
-       ADD TO CART
-    ========================= */
-
-    const addButton =
-      buttonGroup.querySelector(
-        ".add-cart-button"
-      );
-
-
-    addButton.addEventListener(
-      "click",
-      () => {
-
-        const existingItem =
-          verraCart.find(
-            (item) =>
-              item.name ===
-              productName
-          );
-
-
-        if (existingItem) {
-
-          existingItem.quantity += 1;
-
-        } else {
-
-          verraCart.push({
-
-            name:
-              productName,
-
-            price:
-              productData.price,
-
-            image:
-              productData.image,
-
-            quantity:
-              1
-
-          });
-
-        }
-
-
-        saveCart();
-
-        updateCartCount();
-
-        showCartMessage(
-          `${productName} added to cart.`
-        );
-
-      }
-    );
-
-  });
-
-
-/* =========================
+/* =========================================
    CART DRAWER
-========================= */
+========================================= */
 
 function createCartDrawer() {
 
   if (
-    document.querySelector(
-      ".cart-drawer"
-    )
+    document.querySelector(".cart-drawer")
   ) {
     return;
   }
 
 
   const drawer =
-    document.createElement(
-      "aside"
-    );
+    document.createElement("aside");
 
 
   drawer.className =
@@ -367,7 +194,6 @@ function createCartDrawer() {
         </h2>
 
       </div>
-
 
       <button
         type="button"
@@ -409,7 +235,7 @@ function createCartDrawer() {
 
 
       <a
-        href="./order.html"
+        href="order.html"
         class="cart-checkout-button"
       >
         PROCEED TO ORDER
@@ -420,78 +246,82 @@ function createCartDrawer() {
   `;
 
 
-  document.body.appendChild(
-    drawer
-  );
+  document.body.appendChild(drawer);
 
 
-  drawer
-    .querySelector(
+  const closeButton =
+    drawer.querySelector(
       ".cart-close"
-    )
-    .addEventListener(
-      "click",
-      closeCart
     );
 
 
+  closeButton?.addEventListener(
+    "click",
+    closeCart
+  );
+
+
   renderCart();
+
 }
 
 
-/* =========================
+/* =========================================
    OPEN CART
-========================= */
+========================================= */
 
 function openCart() {
 
   createCartDrawer();
 
 
-  document
-    .querySelector(
+  const drawer =
+    document.querySelector(
       ".cart-drawer"
-    )
-    ?.classList.add(
-      "is-open"
     );
+
+
+  drawer?.classList.add(
+    "is-open"
+  );
 
 
   document.body.classList.add(
     "cart-open"
   );
+
 }
 
 
-/* =========================
+/* =========================================
    CLOSE CART
-========================= */
+========================================= */
 
 function closeCart() {
 
-  document
-    .querySelector(
+  const drawer =
+    document.querySelector(
       ".cart-drawer"
-    )
-    ?.classList.remove(
-      "is-open"
     );
+
+
+  drawer?.classList.remove(
+    "is-open"
+  );
 
 
   document.body.classList.remove(
     "cart-open"
   );
+
 }
 
 
-/* =========================
+/* =========================================
    RENDER CART
-========================= */
+========================================= */
 
 function renderCart() {
-
-  createCartDrawer();
-
 
   const itemsContainer =
     document.querySelector(
@@ -513,8 +343,6 @@ function renderCart() {
   }
 
 
-  /* EMPTY CART */
-
   if (
     verraCart.length === 0
   ) {
@@ -527,9 +355,7 @@ function renderCart() {
           Your cart is empty.
         </p>
 
-        <a
-          href="./products.html"
-        >
+        <a href="products.html">
           VIEW LEHENGAS
         </a>
 
@@ -537,74 +363,56 @@ function renderCart() {
 
     `;
 
-  }
-
-
-  /* CART ITEMS */
-
-  else {
+  } else {
 
     itemsContainer.innerHTML =
       verraCart
         .map(
-          (item, index) => {
+          (item, index) => `
 
-            return `
+            <div class="cart-item">
 
-              <div class="cart-item">
+              <img
+                src="${item.image}"
+                alt="${item.name} lehenga"
+              >
 
-                <img
-                  src="${item.image}"
-                  alt="${item.name} lehenga"
+              <div class="cart-item-info">
+
+                <h3>
+                  ${item.name}
+                </h3>
+
+                <p>
+                  ₹${item.price.toLocaleString("en-IN")}
+                </p>
+
+                <p class="cart-quantity">
+                  Quantity: ${item.quantity}
+                </p>
+
+                <button
+                  type="button"
+                  class="remove-cart-item"
+                  data-index="${index}"
                 >
-
-
-                <div class="cart-item-info">
-
-                  <h3>
-                    ${item.name}
-                  </h3>
-
-
-                  <p>
-                    ₹${item.price.toLocaleString("en-IN")}
-                  </p>
-
-
-                  <p class="cart-quantity">
-                    Quantity:
-                    ${item.quantity}
-                  </p>
-
-
-                  <button
-                    type="button"
-                    class="remove-cart-item"
-                    data-index="${index}"
-                  >
-                    REMOVE
-                  </button>
-
-                </div>
+                  REMOVE
+                </button>
 
               </div>
 
-            `;
+            </div>
 
-          }
+          `
         )
         .join("");
 
   }
 
 
-  /* TOTAL */
-
   totalElement.textContent =
     `₹${getCartTotal().toLocaleString("en-IN")}`;
 
-
-  /* REMOVE BUTTONS */
 
   document
     .querySelectorAll(
@@ -613,4 +421,442 @@ function renderCart() {
     .forEach((button) => {
 
       button.addEventListener(
-        "
+        "click",
+        () => {
+
+          const index =
+            Number(
+              button.dataset.index
+            );
+
+
+          verraCart.splice(
+            index,
+            1
+          );
+
+
+          saveCart();
+
+          updateCartCount();
+
+          renderCart();
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================================
+   UPDATE CART COUNT
+========================================= */
+
+function updateCartCount() {
+
+  const count =
+    getCartCount();
+
+
+  const countElement =
+    document.querySelector(
+      ".cart-count"
+    );
+
+
+  if (countElement) {
+
+    countElement.textContent =
+      count;
+
+  }
+
+
+  if (
+    document.querySelector(
+      ".cart-drawer"
+    )
+  ) {
+
+    renderCart();
+
+  }
+
+}
+
+
+/* =========================================
+   CART MESSAGE
+========================================= */
+
+function showCartMessage(
+  message
+) {
+
+  const oldToast =
+    document.querySelector(
+      ".cart-toast"
+    );
+
+
+  oldToast?.remove();
+
+
+  const toast =
+    document.createElement(
+      "div"
+    );
+
+
+  toast.className =
+    "cart-toast";
+
+
+  toast.textContent =
+    message;
+
+
+  document.body.appendChild(
+    toast
+  );
+
+
+  requestAnimationFrame(() => {
+
+    toast.classList.add(
+      "show"
+    );
+
+  });
+
+
+  setTimeout(() => {
+
+    toast.classList.remove(
+      "show"
+    );
+
+
+    setTimeout(() => {
+
+      toast.remove();
+
+    }, 250);
+
+  }, 1800);
+
+}
+
+
+/* =========================================
+   PRODUCTS PAGE
+========================================= */
+
+const productList =
+  document.querySelector(
+    ".product-list"
+  );
+
+
+if (productList) {
+
+
+  /* =======================================
+     CREATE CART BUTTON
+  ======================================= */
+
+  const header =
+    document.querySelector(
+      ".site-header"
+    );
+
+
+  if (
+    header &&
+    !document.querySelector(
+      ".cart-button"
+    )
+  ) {
+
+    const cartButton =
+      document.createElement(
+        "button"
+      );
+
+
+    cartButton.type =
+      "button";
+
+
+    cartButton.className =
+      "cart-button";
+
+
+    cartButton.innerHTML = `
+      CART
+      <span class="cart-count">
+        ${getCartCount()}
+      </span>
+    `;
+
+
+    cartButton.addEventListener(
+      "click",
+      openCart
+    );
+
+
+    header.appendChild(
+      cartButton
+    );
+
+  }
+
+
+  /* =======================================
+     CREATE BUY NOW + ADD TO CART
+  ======================================= */
+
+  document
+    .querySelectorAll(
+      ".full-product"
+    )
+    .forEach((productCard) => {
+
+
+      const nameElement =
+        productCard.querySelector(
+          "h3"
+        );
+
+
+      if (!nameElement) {
+        return;
+      }
+
+
+      const productName =
+        nameElement.textContent.trim();
+
+
+      const productData =
+        verraProducts[
+          productName
+        ];
+
+
+      if (!productData) {
+        return;
+      }
+
+
+      const oldButton =
+        productCard.querySelector(
+          ".product-button"
+        );
+
+
+      if (!oldButton) {
+        return;
+      }
+
+
+      /* Do not process twice */
+
+      if (
+        productCard.querySelector(
+          ".product-action-group"
+        )
+      ) {
+        return;
+      }
+
+
+      /* ===================================
+         BUTTON GROUP
+      =================================== */
+
+      const buttonGroup =
+        document.createElement(
+          "div"
+        );
+
+
+      buttonGroup.className =
+        "product-action-group";
+
+
+      /* ===================================
+         BUY NOW BUTTON
+      =================================== */
+
+      const buyButton =
+        document.createElement(
+          "button"
+        );
+
+
+      buyButton.type =
+        "button";
+
+
+      buyButton.className =
+        "product-button buy-now-button";
+
+
+      buyButton.textContent =
+        "BUY NOW";
+
+
+      /* ===================================
+         ADD TO CART BUTTON
+      =================================== */
+
+      const addButton =
+        document.createElement(
+          "button"
+        );
+
+
+      addButton.type =
+        "button";
+
+
+      addButton.className =
+        "product-button add-cart-button";
+
+
+      addButton.textContent =
+        "ADD TO CART";
+
+
+      /* ===================================
+         PUT BUTTONS TOGETHER
+      =================================== */
+
+      buttonGroup.appendChild(
+        buyButton
+      );
+
+
+      buttonGroup.appendChild(
+        addButton
+      );
+
+
+      oldButton.replaceWith(
+        buttonGroup
+      );
+
+
+      /* ===================================
+         BUY NOW ACTION
+      =================================== */
+
+      buyButton.addEventListener(
+        "click",
+        () => {
+
+          const url =
+            "order.html?product=" +
+            encodeURIComponent(
+              productName
+            );
+
+
+          window.location.assign(
+            url
+          );
+
+        }
+      );
+
+
+      /* ===================================
+         ADD TO CART ACTION
+      =================================== */
+
+      addButton.addEventListener(
+        "click",
+        () => {
+
+
+          const existingItem =
+            verraCart.find(
+              (item) =>
+                item.name ===
+                productName
+            );
+
+
+          if (existingItem) {
+
+            existingItem.quantity += 1;
+
+          } else {
+
+            verraCart.push({
+
+              name:
+                productName,
+
+              price:
+                productData.price,
+
+              image:
+                productData.image,
+
+              quantity:
+                1
+
+            });
+
+          }
+
+
+          saveCart();
+
+          updateCartCount();
+
+
+          showCartMessage(
+            `${productName} added to cart.`
+          );
+
+        }
+      );
+
+    });
+
+
+}
+
+
+/* =========================================
+   ESCAPE KEY
+========================================= */
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeMenu();
+      closeCart();
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   START
+========================================= */
+
+updateCartCount();
