@@ -1,492 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>VERRA — Your Outfit Is The Reflection Of What You Are</title>
-
-  <meta
-    name="description"
-    content="VERRA — contemporary women's fashion designed for effortless confidence."
-  >
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
-
-  <script
-    src="https://checkout.razorpay.com/v1/checkout.js"
-    defer
-  ></script>
-
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERRA — Handcrafted Occasionwear</title>
+<meta name="description" content="VERRA — handcrafted, made-to-order lehengas created for your most beautiful occasions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
-
 <body>
-
-  <!-- TOP ANNOUNCEMENT -->
-
-  <div class="announcement-bar">
-    Free shipping on eligible VERRA orders
+<div class="announcement-bar">MADE TO ORDER · HANDCRAFTED FOR YOU</div>
+<header class="luxury-header">
+  <div class="header-left">
+    <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+    <button class="header-text-button" type="button" data-menu-open>MENU</button>
   </div>
-
-
-  <!-- HEADER -->
-
-  <header class="luxury-header">
-
-    <div class="header-left">
-
-      <button
-        class="menu-button"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <button
-        class="header-text-button"
-        type="button"
-        data-menu-open
-      >
-        MENU
-      </button>
-
-    </div>
-
-
-    <a
-      href="index.html"
-      class="luxury-logo"
-    >
-      VERRA
-    </a>
-
-
-    <div class="header-right">
-
-      <a
-        href="#shop"
-        class="header-icon-link"
-        aria-label="Shop"
-      >
-        SHOP
-      </a>
-
-      <a
-        href="contact.html"
-        class="header-icon-link"
-        aria-label="Contact"
-      >
-        CONTACT
-      </a>
-
-    </div>
-
-  </header>
-
-
-  <!-- MOBILE MENU -->
-
-  <div
-    class="menu-overlay"
-    id="menu-overlay"
-    data-menu-close
-  ></div>
-
-
-  <aside
-    class="mobile-menu"
-    id="mobile-menu"
-    aria-label="VERRA menu"
-  >
-
-    <div class="mobile-menu-header">
-
-      <span class="mobile-menu-title">
-        VERRA
-      </span>
-
-      <button
-        class="menu-close"
-        type="button"
-        aria-label="Close menu"
-        data-menu-close
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <nav class="mobile-navigation">
-
-      <a href="index.html">
-        Home
-      </a>
-
-      <a href="collections.html">
-        Collections
-      </a>
-
-      <a href="#shop">
-        Shop
-      </a>
-
-      <a href="about.html">
-        About VERRA
-      </a>
-
-      <a href="policies.html">
-        Policies
-      </a>
-
-      <a href="terms.html">
-        Terms & Conditions
-      </a>
-
-      <a href="contact.html">
-        Contact
-      </a>
-
-    </nav>
-
-
-    <div class="mobile-menu-footer">
-
-      <p>
-        Your outfit is the reflection of what you are.
-      </p>
-
-      <a href="mailto:officialverrafashion@gmail.com">
-        officialverrafashion@gmail.com
-      </a>
-
-    </div>
-
-  </aside>
-
-
-  <main>
-
-
-    <!-- HERO -->
-
-    <section class="editorial-hero">
-
-      <div class="hero-image-wrap">
-
-        <img
-          src="assets/black-m-top-model.jpg"
-          alt="VERRA women's fashion"
-          class="hero-image"
-        >
-
-      </div>
-
-
-      <div class="hero-overlay">
-
-        <p class="hero-eyebrow">
-          VERRA WOMEN
-        </p>
-
-        <h1>
-          Your outfit is<br>
-          <em>the reflection of what you are.</em>
-        </h1>
-
-        <a
-          href="#shop"
-          class="hero-button"
-        >
-          SHOP THE COLLECTION
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- INTRODUCTION -->
-
-    <section class="editorial-intro">
-
-      <p class="section-eyebrow">
-        VERRA
-      </p>
-
-      <h2>
-        Timeless pieces.<br>
-        <em>Modern expression.</em>
-      </h2>
-
-      <p class="intro-copy">
-        Discover thoughtfully designed women's fashion
-        created for everyday confidence, effortless style
-        and the woman you are becoming.
-      </p>
-
-    </section>
-
-
-    <!-- COLLECTIONS -->
-
-    <section class="featured-collections">
-
-      <div class="section-topline">
-
-        <p class="section-eyebrow">
-          EXPLORE
-        </p>
-
-        <a
-          href="collections.html"
-          class="section-link"
-        >
-          VIEW ALL
-        </a>
-
-      </div>
-
-
-      <div class="collection-editorial-grid">
-
-        <a
-          href="collections.html"
-          class="editorial-collection editorial-collection-main"
-        >
-
-          <div class="collection-placeholder">
-            <span>
-              VERRA
-            </span>
-          </div>
-
-          <div class="collection-caption">
-
-            <span>
-              01
-            </span>
-
-            <div>
-
-              <h3>
-                Tops
-              </h3>
-
-              <p>
-                Effortless silhouettes
-              </p>
-
-            </div>
-
-          </div>
-
-        </a>
-
-
-        <a
-          href="collections.html"
-          class="editorial-collection"
-        >
-
-          <div class="collection-placeholder collection-placeholder-light">
-            <span>
-              VERRA
-            </span>
-          </div>
-
-          <div class="collection-caption">
-
-            <span>
-              02
-            </span>
-
-            <div>
-
-              <h3>
-                Dresses
-              </h3>
-
-              <p>
-                Made for every occasion
-              </p>
-
-            </div>
-
-          </div>
-
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- SHOP -->
-
-    <section
-      class="shop-section"
-      id="shop"
-    >
-
-      <div class="section-topline">
-
-        <div>
-
-          <p class="section-eyebrow">
-            SHOP VERRA
-          </p>
-
-          <h2 class="shop-heading">
-            The <em>edit.</em>
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="product-editorial-grid">
-
-
-        <!-- PRODUCT -->
-
-        <article class="fashion-product">
-
-          <a
-            href="#black-m-top"
-            class="product-image-link"
-          >
-
-            <div class="product-image-frame">
-
-              <img
-                src="assets/black-m-top.jpg"
-                alt="Black M Top"
-              >
-
-            </div>
-
-          </a>
-
-
-          <div class="fashion-product-info">
-
-            <div class="product-meta">
-
-              <div>
-
-                <p class="product-category">
-                  WOMEN · TOPS
-                </p>
-
-                <h3>
-                  Black M Top
-                </h3>
-
-              </div>
-
-              <p class="fashion-price">
-                ₹800
-              </p>
-
-            </div>
-
-
-            <p class="fashion-description">
-              A timeless black sleeveless top finished with
-              delicate floral embroidery. Easy to style,
-              effortless to wear, and made for everyday confidence.
-            </p>
-
-
-            <div
-              class="product-purchase"
-              id="black-m-top"
-            >
-
-              <div class="fashion-size-row">
-
-                <label
-                  for="black-m-top-size"
-                  class="fashion-label"
-                >
-                  SIZE
-                </label>
-
-                <select
-                  id="black-m-top-size"
-                  class="fashion-select"
-                >
-
-                  <option value="S">
-                    S
-                  </option>
-
-                  <option
-                    value="M"
-                    selected
-                  >
-                    M
-                  </option>
-
-                  <option value="L">
-                    L
-                  </option>
-
-                  <option value="XL">
-                    XL
-                  </option>
-
-                  <option value="Custom">
-                    Custom
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <div class="customer-details fashion-customer-details">
-
-                <p class="fashion-label">
-                  ORDER DETAILS
-                </p>
-
-
-                <label
-                  for="customer-name"
-                  class="sr-only"
-                >
-                  Your name
-                </label>
-
-                <input
-                  id="customer-name"
-                  class="fashion-input"
-                  type="text"
-                  autocomplete="name"
-                  placeholder="Full name"
-                  maxlength="80"
-                >
-
-
-                <label
-                  for="customer-email"
-                  class="sr-only"
-                >
-                  Email
+  <a href="index.html" class="luxury-logo">VERRA</a>
+  <nav class="desktop-nav"><a href="#collections">COLLECTIONS</a><a href="#shop">SHOP</a><a href="contact.html">CONTACT</a></nav>
+</header>
+<div class="menu-overlay" id="menu-overlay" data-menu-close></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="VERRA menu">
+  <div class="mobile-menu-header"><span class="mobile-menu-title">VERRA</span><button class="menu-close" type="button" aria-label="Close menu" data-menu-close>×</button></div>
+  <nav class="mobile-navigation">
+    <a href="index.html">Home</a><a href="#collections">Collections</a><a href="#shop">Lehengas</a><a href="about.html">About VERRA</a><a href="policies.html">Policies</a><a href="terms.html">Terms & Conditions</a><a href="contact.html">Contact</a>
+  </nav>
+  <div class="mobile-menu-footer"><p>Handcrafted occasionwear, made to order.</p><a href="mailto:officialverrafashion@gmail.com">officialverrafashion@gmail.com</a></div>
+</aside>
+<main>
+<section class="occasion-hero">
+  <img src="assets/verra-hero.jpg" alt="VERRA handcrafted occasionwear" class="hero-image">
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">THE VERRA OCCASION EDIT</p>
+    <h1>Made for<br><em>your moment.</em></h1>
+    <p class="hero-copy">Handcrafted lehengas and elegant occasionwear, created only when you order.</p>
+    <a href="#shop" class="hero-button">EXPLORE LEHENGAS</a>
+  </div>
+</section>
+<section class="intro-section"><p class="section-eyebrow">VERRA</p><h2>Elegance, <em>made personal.</em></h2><p>Every VERRA piece is made to order with thoughtful detailing, refined silhouettes and the freedom to customize your look.</p></section>
+<section class="occasion-strip" id="collections">
+  <div class="section-topline"><div><p class="section-eyebrow">SHOP BY OCCASION</p><h2>Find your <em>moment.</em></h2></div></div>
+  <div class="occasion-grid">
+    <a href="#shop" class="occasion-card occasion-card-1"><span>Wedding Guest</span></a>
+    <a href="#shop" class="occasion-card occasion-card-2"><span>Engagement</span></a>
+    <a href="#shop" class="occasion-card occasion-card-3"><span>Festive</span></a>
+    <a href="#shop" class="occasion-card occasion-card-4"><span>Evening</span></a>
+  </div>
+</section>
+<section class="shop-section" id="shop">
+  <div class="section-topline"><div><p class="section-eyebrow">THE COLLECTION</p><h2>VERRA <em>Lehengas.</em></h2></div><p class="section-note">Made to order · Customization available</p></div>
+  <div class="product-grid">
+    <article class="product-card"><a href="#product-01" class="product-image-wrap"><img src="assets/verra-lehenga-01.jpg" alt="VERRA Signature Lehenga 01"></a><div class="product-info"><p class="product-number">01</p><h3>Signature I — Rani</h3><p>Festive floral richness with a graceful traditional silhouette.</p><span class="made-to-order">MADE TO ORDER</span></div></article>
+    <article class="product-card"><a href="#product-02" class="product-image-wrap"><img src="assets/verra-lehenga-02.jpg" alt="VERRA Signature Lehenga 02"></a><div class="product-info"><p class="product-number">02</p><h3>Signature II — Mint</h3><p>Soft pastel shimmer for elegant celebrations and daytime occasions.</p><span class="made-to-order">MADE TO ORDER</span></div></article>
+    <article class="product-card"><a href="#product-03" class="product-image-wrap"><img src="assets/verra-lehenga-03.jpg" alt="VERRA Signature Lehenga 03"></a><div class="product-info"><p class="product-number">03</p><h3>Signature III — Plum</h3><p>A deep jewel tone with refined embellishment.</p><span class="made-to-order">MADE TO ORDER</span></div></article>
+    <article class="product-card"><a href="#product-04" class="product-image-wrap"><img src="assets/verra-lehenga-04.jpg" alt="VERRA Signature Lehenga 04"></a><div class="product-info"><p class="product-number">04</p><h3>Signature IV — Ivory</h3><p>Quiet luxury in an ivory-and-gold palette.</p><span class="made-to-order">MADE TO ORDER</span></div></article>
+  </div>
+</section>
+<section class="custom-section">
+  <div class="custom-copy"><p class="section-eyebrow">MADE FOR YOU</p><h2>Your lehenga.<br><em>Your measurements.</em></h2><p>Choose your silhouette and finish, then have your blouse tailored to your measurements. Additional customization can be discussed before production.</p><a href="contact.html" class="text-link">ASK ABOUT CUSTOMIZATION →</a></div>
+  <div class="custom-panel"><span>VERRA</span><p>Crafted slowly.<br>Worn beautifully.</p></div>
+</section>
+<section class="brand-section"><p class="section-eyebrow">THE VERRA PHILOSOPHY</p><h2>“Your outfit is the<br><em>reflection of what you are.</em>”</h2><p>We create occasionwear for women who want their clothes to feel personal, elegant and entirely their own.</p><a href="about.html" class="text-link">DISCOVER VERRA →</a></section>
+</main>
+<footer class="luxury-footer">
+<div class="footer-grid">
+<div><div class="footer-logo">VERRA</div><p>Your outfit is the reflection of what you are.</p></div>
+<div><p class="footer-heading">EXPLORE</p><a href="#shop">Lehengas</a><a href="collections.html">Collections</a><a href="about.html">About VERRA</a></div>
+<div><p class="footer-heading">INFORMATION</p><a href="policies.html">Policies</a><a href="terms.html">Terms & Conditions</a><a href="contact.html">Contact</a></div>
+<div><p class="footer-heading">CUSTOMER CARE</p><a href="mailto:officialverrafashion@gmail.com">officialverrafashion@gmail.com</a></div>
+</div>
+<div class="footer-bottom">© 2026 VERRA. All rights reserved.</div>
+</footer>
+</body>
+</html>
