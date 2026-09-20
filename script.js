@@ -35,6 +35,11 @@ document
     link.addEventListener("click", closeMenu);
   });
 
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeMenu();
@@ -77,9 +82,10 @@ const verraProducts = {
 let verraCart = [];
 
 try {
-  verraCart = JSON.parse(
-    localStorage.getItem("verraCart")
-  ) || [];
+  verraCart =
+    JSON.parse(
+      localStorage.getItem("verraCart")
+    ) || [];
 } catch {
   verraCart = [];
 }
@@ -94,22 +100,27 @@ function saveCart() {
 
 
 function getCartTotal() {
-  return verraCart.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
+  return verraCart.reduce(
+    (total, item) => {
+      return total + item.price * item.quantity;
+    },
+    0
+  );
 }
 
 
 function getCartCount() {
-  return verraCart.reduce((total, item) => {
-    return total + item.quantity;
-  }, 0);
+  return verraCart.reduce(
+    (total, item) => {
+      return total + item.quantity;
+    },
+    0
+  );
 }
 
 
 /* =========================
-   CART BUTTON
-   PRODUCTS PAGE ONLY
+   PRODUCTS PAGE
 ========================= */
 
 const productsPage =
@@ -117,6 +128,11 @@ const productsPage =
 
 const header =
   document.querySelector(".site-header");
+
+
+/* =========================
+   CART BUTTON
+========================= */
 
 if (
   productsPage &&
@@ -127,11 +143,15 @@ if (
   const cartButton =
     document.createElement("button");
 
-  cartButton.className = "cart-button";
-  cartButton.type = "button";
+  cartButton.className =
+    "cart-button";
+
+  cartButton.type =
+    "button";
 
   cartButton.innerHTML = `
-    CART <span class="cart-count">0</span>
+    CART
+    <span class="cart-count">0</span>
   `;
 
   cartButton.addEventListener(
@@ -139,7 +159,9 @@ if (
     openCart
   );
 
-  header.appendChild(cartButton);
+  header.appendChild(
+    cartButton
+  );
 }
 
 
@@ -164,31 +186,43 @@ document
       return;
     }
 
+
     const productData =
       verraProducts[productName];
+
 
     const oldButton =
       productCard.querySelector(
         ".product-button"
       );
 
-    if (!oldButton) return;
 
+    if (!oldButton) {
+      return;
+    }
+
+
+    /* =========================
+       NEW BUTTON GROUP
+    ========================= */
 
     const buttonGroup =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     buttonGroup.className =
       "product-action-group";
 
 
     buttonGroup.innerHTML = `
-      <a
-        href="order.html?product=${encodeURIComponent(productName)}"
+
+      <button
+        type="button"
         class="product-button buy-now-button"
       >
         BUY NOW
-      </a>
+      </button>
 
       <button
         type="button"
@@ -196,6 +230,7 @@ document
       >
         ADD TO CART
       </button>
+
     `;
 
 
@@ -203,6 +238,37 @@ document
       buttonGroup
     );
 
+
+    /* =========================
+       BUY NOW
+    ========================= */
+
+    const buyButton =
+      buttonGroup.querySelector(
+        ".buy-now-button"
+      );
+
+
+    buyButton.addEventListener(
+      "click",
+      () => {
+
+        const orderPage =
+          "./order.html?product=" +
+          encodeURIComponent(
+            productName
+          );
+
+        window.location.href =
+          orderPage;
+
+      }
+    );
+
+
+    /* =========================
+       ADD TO CART
+    ========================= */
 
     const addButton =
       buttonGroup.querySelector(
@@ -217,7 +283,8 @@ document
         const existingItem =
           verraCart.find(
             (item) =>
-              item.name === productName
+              item.name ===
+              productName
           );
 
 
@@ -228,10 +295,19 @@ document
         } else {
 
           verraCart.push({
-            name: productName,
-            price: productData.price,
-            image: productData.image,
-            quantity: 1
+
+            name:
+              productName,
+
+            price:
+              productData.price,
+
+            image:
+              productData.image,
+
+            quantity:
+              1
+
           });
 
         }
@@ -267,7 +343,10 @@ function createCartDrawer() {
 
 
   const drawer =
-    document.createElement("aside");
+    document.createElement(
+      "aside"
+    );
+
 
   drawer.className =
     "cart-drawer";
@@ -330,7 +409,7 @@ function createCartDrawer() {
 
 
       <a
-        href="order.html"
+        href="./order.html"
         class="cart-checkout-button"
       >
         PROCEED TO ORDER
@@ -347,7 +426,9 @@ function createCartDrawer() {
 
 
   drawer
-    .querySelector(".cart-close")
+    .querySelector(
+      ".cart-close"
+    )
     .addEventListener(
       "click",
       closeCart
@@ -368,7 +449,9 @@ function openCart() {
 
 
   document
-    .querySelector(".cart-drawer")
+    .querySelector(
+      ".cart-drawer"
+    )
     ?.classList.add(
       "is-open"
     );
@@ -387,7 +470,9 @@ function openCart() {
 function closeCart() {
 
   document
-    .querySelector(".cart-drawer")
+    .querySelector(
+      ".cart-drawer"
+    )
     ?.classList.remove(
       "is-open"
     );
@@ -428,6 +513,8 @@ function renderCart() {
   }
 
 
+  /* EMPTY CART */
+
   if (
     verraCart.length === 0
   ) {
@@ -440,7 +527,9 @@ function renderCart() {
           Your cart is empty.
         </p>
 
-        <a href="products.html">
+        <a
+          href="./products.html"
+        >
           VIEW LEHENGAS
         </a>
 
@@ -448,7 +537,12 @@ function renderCart() {
 
     `;
 
-  } else {
+  }
+
+
+  /* CART ITEMS */
+
+  else {
 
     itemsContainer.innerHTML =
       verraCart
@@ -471,13 +565,17 @@ function renderCart() {
                     ${item.name}
                   </h3>
 
+
                   <p>
                     ₹${item.price.toLocaleString("en-IN")}
                   </p>
 
+
                   <p class="cart-quantity">
-                    Quantity: ${item.quantity}
+                    Quantity:
+                    ${item.quantity}
                   </p>
+
 
                   <button
                     type="button"
@@ -500,9 +598,13 @@ function renderCart() {
   }
 
 
+  /* TOTAL */
+
   totalElement.textContent =
     `₹${getCartTotal().toLocaleString("en-IN")}`;
 
+
+  /* REMOVE BUTTONS */
 
   document
     .querySelectorAll(
@@ -511,141 +613,4 @@ function renderCart() {
     .forEach((button) => {
 
       button.addEventListener(
-        "click",
-        () => {
-
-          const index =
-            Number(
-              button.dataset.index
-            );
-
-
-          verraCart.splice(
-            index,
-            1
-          );
-
-
-          saveCart();
-
-          updateCartCount();
-
-          renderCart();
-
-        }
-      );
-
-    });
-}
-
-
-/* =========================
-   UPDATE CART COUNT
-========================= */
-
-function updateCartCount() {
-
-  const countElement =
-    document.querySelector(
-      ".cart-count"
-    );
-
-
-  if (countElement) {
-
-    countElement.textContent =
-      getCartCount();
-
-  }
-
-
-  if (
-    document.querySelector(
-      ".cart-drawer"
-    )
-  ) {
-
-    renderCart();
-
-  }
-}
-
-
-/* =========================
-   CART MESSAGE
-========================= */
-
-function showCartMessage(
-  message
-) {
-
-  const existing =
-    document.querySelector(
-      ".cart-toast"
-    );
-
-
-  existing?.remove();
-
-
-  const toast =
-    document.createElement(
-      "div"
-    );
-
-
-  toast.className =
-    "cart-toast";
-
-
-  toast.textContent =
-    message;
-
-
-  document.body.appendChild(
-    toast
-  );
-
-
-  requestAnimationFrame(
-    () => {
-
-      toast.classList.add(
-        "show"
-      );
-
-    }
-  );
-
-
-  setTimeout(
-    () => {
-
-      toast.classList.remove(
-        "show"
-      );
-
-
-      setTimeout(
-        () => {
-
-          toast.remove();
-
-        },
-        250
-      );
-
-    },
-    1800
-  );
-}
-
-
-/* =========================
-   START CART
-========================= */
-
-if (productsPage) {
-  createCartDrawer();
-  updateCartCount();
-}
+        "
