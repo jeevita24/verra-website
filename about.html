@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About — VERRA</title>
+  <title>About VERRA — VERRA</title>
 
   <meta
     name="description"
@@ -24,46 +24,86 @@
 
 <body>
 
+  <!-- ANNOUNCEMENT -->
+
+  <div class="announcement">
+    MADE TO ORDER · READY TO WEAR · HANDCRAFTED FOR YOU
+  </div>
+
+
+  <!-- HEADER -->
+
   <header class="site-header">
 
-    <div class="header-inner">
+    <a href="index.html" class="logo">
+      VERRA
+    </a>
 
-      <a href="index.html" class="brand">
-        VERRA
-      </a>
+    <nav class="desktop-navigation">
+      <a href="products.html">LEHENGAS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
 
-      <nav class="main-nav" aria-label="Main navigation">
-
-        <a href="collections.html">
-          Collections
-        </a>
-
-        <a href="index.html#shop">
-          Shop
-        </a>
-
-        <a href="about.html">
-          About
-        </a>
-
-        <a href="policies.html">
-          Policies
-        </a>
-
-        <a href="terms.html">
-          Terms
-        </a>
-
-        <a href="contact.html">
-          Contact
-        </a>
-
-      </nav>
-
-    </div>
+    <button
+      class="menu-button"
+      data-menu-open
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+    </button>
 
   </header>
 
+
+  <!-- MOBILE MENU -->
+
+  <div class="menu-overlay" data-menu-close></div>
+
+  <aside class="mobile-menu">
+
+    <button
+      class="menu-close"
+      data-menu-close
+      aria-label="Close menu"
+    >
+      ×
+    </button>
+
+    <nav class="mobile-navigation">
+
+      <a href="index.html">
+        HOME
+      </a>
+
+      <a href="products.html">
+        LEHENGAS
+      </a>
+
+      <a href="about.html">
+        ABOUT VERRA
+      </a>
+
+      <a href="policies.html">
+        POLICIES
+      </a>
+
+      <a href="terms.html">
+        TERMS &amp; CONDITIONS
+      </a>
+
+      <a href="contact.html">
+        CONTACT
+      </a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- ABOUT -->
 
   <main>
 
@@ -102,22 +142,29 @@
           </p>
 
           <p>
-            Our collections focus on refined silhouettes,
-            thoughtful details and versatile pieces designed
-            to become part of your personal wardrobe.
+            VERRA creates handcrafted, ready-to-wear lehengas
+            designed for moments that deserve something special.
+            Each piece is made with thoughtful details and a
+            focus on elegance, comfort and individuality.
           </p>
 
           <p>
-            Every VERRA piece is created with the intention of
-            making everyday dressing feel considered, confident
-            and effortlessly beautiful.
+            Every VERRA lehenga is made to order, made for you.
+            Before your order is prepared, we speak with you
+            about your size, measurements, blouse preference,
+            skirt length and any customization you may require.
           </p>
 
           <p>
-            From everyday essentials to pieces for special
-            occasions, VERRA is built around the idea that
-            personal style should feel natural, expressive
-            and entirely your own.
+            Your order begins with a conversation. Once your
+            requirements are confirmed, we prepare your piece
+            and arrange dispatch.
+          </p>
+
+          <p>
+            VERRA is built around the belief that what you wear
+            should feel like an expression of who you are —
+            personal, confident and entirely your own.
           </p>
 
 
@@ -142,6 +189,8 @@
   </main>
 
 
+  <!-- FOOTER -->
+
   <footer class="site-footer">
 
     <div class="footer-inner">
@@ -165,8 +214,12 @@
           Home
         </a>
 
-        <a href="collections.html">
-          Collections
+        <a href="products.html">
+          Lehengas
+        </a>
+
+        <a href="about.html">
+          About VERRA
         </a>
 
         <a href="policies.html">
@@ -174,7 +227,7 @@
         </a>
 
         <a href="terms.html">
-          Terms
+          Terms &amp; Conditions
         </a>
 
         <a href="contact.html">
@@ -195,6 +248,9 @@
     </div>
 
   </footer>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
