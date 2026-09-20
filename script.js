@@ -1,7 +1,3 @@
-const menu=document.querySelector(".mobile-menu");const overlay=document.querySelector(".menu-overlay");const menuButton=document.querySelector(".menu-button");const openMenuButton=document.querySelector("[data-menu-open]");const closeButtons=document.querySelectorAll("[data-menu-close]");
-function openMenu(){if(!menu)return;menu.classList.add("is-open");overlay?.classList.add("is-visible");document.body.classList.add("menu-open");menuButton?.setAttribute("aria-expanded","true")}
-function closeMenu(){if(!menu)return;menu.classList.remove("is-open");overlay?.classList.remove("is-visible");document.body.classList.remove("menu-open");menuButton?.setAttribute("aria-expanded","false")}
-menuButton?.addEventListener("click",openMenu);openMenuButton?.addEventListener("click",openMenu);closeButtons.forEach(b=>b.addEventListener("click",closeMenu));document.querySelectorAll(".mobile-navigation a").forEach(a=>a.addEventListener("click",closeMenu));document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
 const menu = document.querySelector(".mobile-menu");
 const overlay = document.querySelector(".menu-overlay");
 const menuButton = document.querySelector(".menu-button");
