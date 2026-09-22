@@ -4,393 +4,692 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Order | VERRA</title>
+  <title>Place Your Order | VERRA</title>
+
+  <meta
+    name="description"
+    content="Place your made-to-order VERRA lehenga order."
+  >
 
   <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
-  <!-- ANNOUNCEMENT -->
-  <div class="announcement">
-    MADE TO ORDER · READY TO WEAR · HANDCRAFTED FOR YOU
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <div class="announcement">
+      VERRA — MADE TO ORDER
+    </div>
   </div>
 
 
   <!-- HEADER -->
   <header class="site-header">
 
-    <a href="index.html" class="logo">
-      VERRA
-    </a>
+    <div class="header-inner">
 
-    <nav class="desktop-navigation">
-      <a href="products.html">LEHENGAS</a>
-      <a href="about.html">ABOUT</a>
-      <a href="contact.html">CONTACT</a>
-    </nav>
+      <a href="index.html" class="brand">
+        VERRA
+      </a>
 
-    <button
-      class="menu-button"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      data-menu-open
-    >
-      MENU
-    </button>
+      <nav class="desktop-nav">
+
+        <a href="products.html">
+          LEHENGAS
+        </a>
+
+        <a href="about.html">
+          ABOUT
+        </a>
+
+        <a href="contact.html">
+          CONTACT
+        </a>
+
+        <a href="account.html">
+          ACCOUNT
+        </a>
+
+      </nav>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
 
   </header>
 
 
   <!-- MOBILE MENU -->
-  <div class="menu-overlay" data-menu-close></div>
-
-  <aside class="mobile-menu">
+  <div class="mobile-menu" id="mobileMenu">
 
     <button
       class="mobile-menu-close"
+      id="mobileMenuClose"
       type="button"
-      data-menu-close
+      aria-label="Close menu"
     >
-      CLOSE
+      ×
     </button>
 
-    <nav class="mobile-navigation">
+    <a href="index.html">
+      HOME
+    </a>
 
-      <a href="index.html">HOME</a>
+    <a href="products.html">
+      LEHENGAS
+    </a>
 
-      <a href="products.html">LEHENGAS</a>
+    <a href="about.html">
+      ABOUT VERRA
+    </a>
 
-      <a href="about.html">ABOUT VERRA</a>
+    <a href="policies.html">
+      POLICIES
+    </a>
 
-      <a href="policies.html">POLICIES</a>
+    <a href="terms.html">
+      TERMS & CONDITIONS
+    </a>
 
-      <a href="terms.html">TERMS & CONDITIONS</a>
+    <a href="contact.html">
+      CONTACT
+    </a>
 
-      <a href="contact.html">CONTACT</a>
+    <a href="account.html">
+      ACCOUNT
+    </a>
 
-    </nav>
-
-  </aside>
-
-
-  <main>
+  </div>
 
 
-    <!-- INTRO -->
-    <section class="page-intro">
+  <!-- ORDER PAGE -->
+  <main class="order-page">
+
+    <section class="order-intro">
 
       <p class="eyebrow">
         VERRA ORDER
       </p>
 
       <h1>
-        Your order,<br>
-        your way.
+        Place Your Order
       </h1>
 
       <p>
-        Choose your lehenga, size, blouse preference and skirt
-        length. You can also privately share any additional
-        requirements with us.
+        Your saved account information will be used
+        to make your next order easier.
       </p>
 
     </section>
 
 
-    <!-- ORDER FORM -->
-    <section class="order-section">
+    <!-- ACCOUNT STATUS -->
+    <section class="order-card" id="accountStatusCard">
 
-      <div class="order-intro">
+      <p class="eyebrow">
+        YOUR ACCOUNT
+      </p>
 
-        <p class="eyebrow">
-          MADE FOR YOU
-        </p>
-
-        <h2>
-          Tell us what you need.
-        </h2>
+      <div id="accountStatusMessage">
 
         <p>
-          Select your preferences below and use the additional
-          requirements box for anything else you would like us
-          to know.
+          Checking your account...
         </p>
 
       </div>
 
-
-      <form
-        class="order-form"
-        id="verra-order-form"
-      >
+    </section>
 
 
-        <!-- LEHENGA -->
+    <!-- ORDER FORM -->
+    <section
+      class="order-card"
+      id="orderFormCard"
+      hidden
+    >
 
-        <div class="form-group">
+      <form id="orderForm">
 
-          <label for="product">
-            SELECT LEHENGA
-          </label>
+        <!-- PRODUCT -->
+        <div class="order-section">
 
-          <select
-            id="product"
-            name="product"
-            required
-          >
+          <h2>
+            1. Choose Your Lehenga
+          </h2>
 
-            <option value="">
-              Select a lehenga
-            </option>
+          <div class="form-group">
 
-            <option value="Rani">
-              Rani — ₹14,999
-            </option>
+            <label for="product">
+              Lehenga
+            </label>
 
-            <option value="Mint">
-              Mint — ₹10,099
-            </option>
+            <select
+              id="product"
+              name="product"
+              required
+            >
 
-            <option value="Plum">
-              Plum — ₹11,999
-            </option>
+              <option value="">
+                Select your lehenga
+              </option>
 
-            <option value="Ivory">
-              Ivory — ₹13,099
-            </option>
+              <option value="Rani">
+                Rani — ₹14,999
+              </option>
 
-          </select>
+              <option value="Mint">
+                Mint — ₹10,099
+              </option>
+
+              <option value="Plum">
+                Plum — ₹11,999
+              </option>
+
+              <option value="Ivory">
+                Ivory — ₹13,099
+              </option>
+
+            </select>
+
+          </div>
 
         </div>
 
 
         <!-- BLOUSE -->
+        <div class="order-section">
 
-        <div class="form-group">
+          <h2>
+            2. Blouse Preference
+          </h2>
 
-          <label for="blouse">
-            BLOUSE
-          </label>
+          <div class="form-group">
 
-          <select
-            id="blouse"
-            name="blouse"
-            required
-          >
+            <label for="blousePreference">
+              Blouse
+            </label>
 
-            <option value="">
-              Select blouse option
-            </option>
+            <select
+              id="blousePreference"
+              name="blouse_preference"
+              required
+            >
 
-            <option value="No blouse">
-              No blouse
-            </option>
+              <option value="">
+                Select blouse preference
+              </option>
 
-            <option value="Stitched Blouse">
-              Stitched Blouse
-            </option>
+              <option value="No blouse">
+                No blouse
+              </option>
 
-            <option value="Customized Blouse">
-              Customized Blouse
-            </option>
+              <option value="Stitched Blouse">
+                Stitched Blouse
+              </option>
 
-          </select>
+              <option value="Customized Blouse">
+                Customized Blouse
+              </option>
 
-          <p class="form-note">
-            Any blouse preference or customization can also
-            be explained in the additional requirements box.
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- SIZES -->
+        <div class="order-section">
+
+          <h2>
+            3. Your Sizes
+          </h2>
+
+          <p class="small-note">
+            Please use the VERRA size guide on the Lehengas page.
           </p>
 
-        </div>
+
+          <div class="form-group">
+
+            <label for="blouseSize">
+              Blouse Size
+            </label>
+
+            <select
+              id="blouseSize"
+              name="blouse_size"
+              required
+            >
+
+              <option value="">
+                Select blouse size
+              </option>
+
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+              <option value="3XL">3XL</option>
+
+            </select>
+
+          </div>
 
 
-        <!-- BLOUSE SIZE -->
+          <div class="form-group">
 
-        <div class="form-group">
+            <label for="skirtSize">
+              Skirt Size
+            </label>
 
-          <label for="blouse-size">
-            BLOUSE SIZE
-          </label>
+            <select
+              id="skirtSize"
+              name="skirt_size"
+              required
+            >
 
-          <select
-            id="blouse-size"
-            name="blouse-size"
-            required
-          >
+              <option value="">
+                Select skirt size
+              </option>
 
-            <option value="">
-              Select blouse size
-            </option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+              <option value="3XL">3XL</option>
 
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-            <option value="3XL">3XL</option>
+            </select>
 
-          </select>
-
-        </div>
+          </div>
 
 
-        <!-- SKIRT SIZE -->
+          <div class="form-group">
 
-        <div class="form-group">
+            <label for="skirtLength">
+              Skirt Length
+            </label>
 
-          <label for="skirt-size">
-            SKIRT SIZE
-          </label>
+            <select
+              id="skirtLength"
+              name="skirt_length"
+              required
+            >
 
-          <select
-            id="skirt-size"
-            name="skirt-size"
-            required
-          >
+              <option value="">
+                Select skirt length
+              </option>
 
-            <option value="">
-              Select skirt size
-            </option>
+              <option value="38">
+                38"
+              </option>
 
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-            <option value="3XL">3XL</option>
+              <option value="39">
+                39"
+              </option>
 
-          </select>
+              <option value="40">
+                40"
+              </option>
 
-        </div>
+              <option value="41">
+                41"
+              </option>
 
+              <option value="42">
+                42"
+              </option>
 
-        <!-- SKIRT LENGTH -->
+            </select>
 
-        <div class="form-group">
-
-          <label for="skirt-length">
-            SKIRT LENGTH
-          </label>
-
-          <select
-            id="skirt-length"
-            name="skirt-length"
-            required
-          >
-
-            <option value="">
-              Select skirt length
-            </option>
-
-            <option value='38"'>38"</option>
-            <option value='39"'>39"</option>
-            <option value='40"'>40"</option>
-            <option value='41"'>41"</option>
-            <option value='42"'>42"</option>
-
-          </select>
+          </div>
 
         </div>
 
 
         <!-- ADDITIONAL REQUIREMENTS -->
+        <div class="order-section">
 
-        <div class="form-group form-group-large">
+          <h2>
+            4. Additional Requirements
+          </h2>
 
-          <label for="requirements">
-            ADDITIONAL REQUIREMENTS
-          </label>
+          <p class="small-note">
+            Share any blouse, fit, measurement or other
+            private requirements for your order.
+          </p>
 
-          <textarea
-            id="requirements"
-            name="requirements"
-            rows="7"
-            placeholder="Tell us anything you would like us to know about your lehenga, blouse, fit, measurements or customization..."
-          ></textarea>
+          <div class="form-group">
 
-          <p class="form-note">
-            You can privately share any additional requirements,
-            measurements, fit preferences or customization requests here.
+            <label for="additionalRequirements">
+              Additional Requirements
+            </label>
+
+            <textarea
+              id="additionalRequirements"
+              name="additional_requirements"
+              rows="7"
+              placeholder="Write any additional requirements here..."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <!-- CUSTOMER INFORMATION -->
+        <div class="order-section">
+
+          <h2>
+            5. Your Information
+          </h2>
+
+
+          <div class="form-group">
+
+            <label for="fullName">
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              id="fullName"
+              name="full_name"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="email">
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              readonly
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="phone">
+              Phone / WhatsApp
+            </label>
+
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="tel"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- DELIVERY ADDRESS -->
+        <div class="order-section">
+
+          <h2>
+            6. Delivery Address
+          </h2>
+
+          <p class="small-note">
+            Your saved address appears automatically.
+            You can update it before placing your order.
+          </p>
+
+
+          <div class="form-group">
+
+            <label for="addressFullName">
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              id="addressFullName"
+              name="address_full_name"
+              autocomplete="shipping name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="houseNumber">
+              House / Flat Number
+            </label>
+
+            <input
+              type="text"
+              id="houseNumber"
+              name="house_number"
+              autocomplete="shipping address-line1"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="streetLocality">
+              Street / Locality
+            </label>
+
+            <input
+              type="text"
+              id="streetLocality"
+              name="street_locality"
+              autocomplete="shipping address-line2"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="city">
+              City
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              name="city"
+              autocomplete="shipping address-level2"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="state">
+              State
+            </label>
+
+            <input
+              type="text"
+              id="state"
+              name="state"
+              autocomplete="shipping address-level1"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="pinCode">
+              PIN Code
+            </label>
+
+            <input
+              type="text"
+              id="pinCode"
+              name="pin_code"
+              inputmode="numeric"
+              autocomplete="shipping postal-code"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="country">
+              Country
+            </label>
+
+            <input
+              type="text"
+              id="country"
+              name="country"
+              value="India"
+              autocomplete="shipping country-name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="addressPhone">
+              Delivery Phone Number
+            </label>
+
+            <input
+              type="tel"
+              id="addressPhone"
+              name="address_phone"
+              autocomplete="shipping tel"
+              required
+            >
+
+          </div>
+
+
+          <button
+            type="button"
+            class="product-button"
+            id="saveAddressButton"
+          >
+            SAVE ADDRESS
+          </button>
+
+          <p
+            class="small-note"
+            id="addressSaveMessage"
+            aria-live="polite"
+          ></p>
+
+        </div>
+
+
+        <!-- PRIVACY -->
+        <div class="order-privacy">
+
+          <h3>
+            Your information is private
+          </h3>
+
+          <p>
+            Your personal information and delivery address
+            are securely stored with your VERRA account
+            and used for order fulfilment, delivery and
+            necessary order communication.
           </p>
 
         </div>
 
 
-        <!-- CUSTOMER NAME -->
-
-        <div class="form-group">
-
-          <label for="name">
-            YOUR NAME
-          </label>
-
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your name"
-            required
-          >
-
-        </div>
-
-
-        <!-- PHONE -->
-
-        <div class="form-group">
-
-          <label for="phone">
-            PHONE / WHATSAPP
-          </label>
-
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Your phone number"
-            required
-          >
-
-        </div>
-
-
-        <!-- EMAIL -->
-
-        <div class="form-group">
-
-          <label for="email">
-            EMAIL
-          </label>
-
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your email address"
-          >
-
-        </div>
-
-
         <!-- SUBMIT -->
+        <div class="order-submit-section">
 
-        <button
-          type="submit"
-          class="order-submit-button"
-        >
-          SUBMIT ORDER REQUIREMENTS
-        </button>
+          <button
+            type="submit"
+            class="order-submit-button"
+            id="submitOrderButton"
+          >
+            CONTINUE TO PAYMENT
+          </button>
 
+          <p
+            class="order-message"
+            id="orderMessage"
+            aria-live="polite"
+          ></p>
 
-        <p class="order-submit-note">
-          We will review your requirements before preparing your order.
-        </p>
+        </div>
 
       </form>
+
+    </section>
+
+
+    <!-- NOT LOGGED IN -->
+    <section
+      class="order-card"
+      id="loginRequiredCard"
+      hidden
+    >
+
+      <p class="eyebrow">
+        ACCOUNT REQUIRED
+      </p>
+
+      <h2>
+        Please log in before ordering
+      </h2>
+
+      <p>
+        Your VERRA account keeps your delivery information
+        saved securely, so you don't have to enter it again
+        every time you order.
+      </p>
+
+      <a
+        href="account.html"
+        class="account-action-button"
+      >
+        LOGIN / CREATE ACCOUNT
+      </a>
 
     </section>
 
@@ -400,44 +699,46 @@
   <!-- FOOTER -->
   <footer class="site-footer">
 
-    <div class="footer-brand">
+    <div class="footer-inner">
 
-      <a href="index.html" class="logo">
+      <div class="footer-brand">
         VERRA
-      </a>
+      </div>
 
-      <p>
-        Your outfit is the reflection of what you are.
-      </p>
+      <div class="footer-links">
 
-    </div>
+        <a href="index.html">
+          Home
+        </a>
 
+        <a href="products.html">
+          Lehengas
+        </a>
 
-    <div class="footer-links">
+        <a href="about.html">
+          About VERRA
+        </a>
 
-      <a href="index.html">HOME</a>
+        <a href="policies.html">
+          Policies
+        </a>
 
-      <a href="products.html">LEHENGAS</a>
+        <a href="terms.html">
+          Terms & Conditions
+        </a>
 
-      <a href="about.html">ABOUT VERRA</a>
+        <a href="contact.html">
+          Contact
+        </a>
 
-      <a href="policies.html">POLICIES</a>
+        <a href="account.html">
+          Account
+        </a>
 
-      <a href="terms.html">TERMS & CONDITIONS</a>
+      </div>
 
-      <a href="contact.html">CONTACT</a>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-      <p>
-        © VERRA. ALL RIGHTS RESERVED.
-      </p>
-
-      <p>
-        GOA, INDIA
+      <p class="footer-copy">
+        © VERRA. All rights reserved.
       </p>
 
     </div>
@@ -445,7 +746,994 @@
   </footer>
 
 
-  <script src="script.js"></script>
+  <!-- ORDER SCRIPT -->
+  <script>
+
+    let supabaseClient = null;
+    let currentUser = null;
+    let currentAddress = null;
+
+
+    /*
+      VERRA PRODUCT PRICES
+    */
+
+    const verraProducts = {
+      Rani: 14999,
+      Mint: 10099,
+      Plum: 11999,
+      Ivory: 13099
+    };
+
+
+    /*
+      ELEMENTS
+    */
+
+    const accountStatusCard =
+      document.getElementById("accountStatusCard");
+
+    const accountStatusMessage =
+      document.getElementById("accountStatusMessage");
+
+    const orderFormCard =
+      document.getElementById("orderFormCard");
+
+    const loginRequiredCard =
+      document.getElementById("loginRequiredCard");
+
+    const orderForm =
+      document.getElementById("orderForm");
+
+    const productSelect =
+      document.getElementById("product");
+
+    const fullNameInput =
+      document.getElementById("fullName");
+
+    const emailInput =
+      document.getElementById("email");
+
+    const phoneInput =
+      document.getElementById("phone");
+
+    const addressFullNameInput =
+      document.getElementById("addressFullName");
+
+    const houseNumberInput =
+      document.getElementById("houseNumber");
+
+    const streetLocalityInput =
+      document.getElementById("streetLocality");
+
+    const cityInput =
+      document.getElementById("city");
+
+    const stateInput =
+      document.getElementById("state");
+
+    const pinCodeInput =
+      document.getElementById("pinCode");
+
+    const countryInput =
+      document.getElementById("country");
+
+    const addressPhoneInput =
+      document.getElementById("addressPhone");
+
+    const saveAddressButton =
+      document.getElementById("saveAddressButton");
+
+    const addressSaveMessage =
+      document.getElementById("addressSaveMessage");
+
+    const orderMessage =
+      document.getElementById("orderMessage");
+
+    const submitOrderButton =
+      document.getElementById("submitOrderButton");
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const mobileMenuClose =
+      document.getElementById("mobileMenuClose");
+
+
+    /*
+      MESSAGE HELPERS
+    */
+
+    function showOrderMessage(message, type = "") {
+
+      orderMessage.textContent = message;
+
+      orderMessage.className =
+        "order-message";
+
+      if (type) {
+        orderMessage.classList.add(type);
+      }
+
+    }
+
+
+    function showAddressMessage(message, type = "") {
+
+      addressSaveMessage.textContent =
+        message;
+
+      addressSaveMessage.className =
+        "small-note";
+
+      if (type) {
+        addressSaveMessage.classList.add(type);
+      }
+
+    }
+
+
+    /*
+      LOAD SUPABASE
+    */
+
+    async function loadSupabase() {
+
+      try {
+
+        const response =
+          await fetch("/api/public-config");
+
+        if (!response.ok) {
+          throw new Error(
+            "Could not load account configuration."
+          );
+        }
+
+        const config =
+          await response.json();
+
+        if (
+          !config.supabaseUrl ||
+          !config.supabasePublishableKey
+        ) {
+          throw new Error(
+            "Supabase configuration is incomplete."
+          );
+        }
+
+        supabaseClient =
+          window.supabase.createClient(
+            config.supabaseUrl,
+            config.supabasePublishableKey
+          );
+
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.getSession();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        if (
+          data &&
+          data.session &&
+          data.session.user
+        ) {
+
+          await handleLoggedInUser(
+            data.session.user
+          );
+
+        } else {
+
+          showLoginRequired();
+
+        }
+
+
+        supabaseClient.auth.onAuthStateChange(
+          async (event, session) => {
+
+            if (
+              event === "SIGNED_IN" &&
+              session &&
+              session.user
+            ) {
+
+              await handleLoggedInUser(
+                session.user
+              );
+
+            }
+
+
+            if (event === "SIGNED_OUT") {
+
+              showLoginRequired();
+
+            }
+
+          }
+        );
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        accountStatusMessage.innerHTML =
+          "<p>We could not connect to your account. Please try again.</p>";
+
+      }
+
+    }
+
+
+    /*
+      LOGGED-IN USER
+    */
+
+    async function handleLoggedInUser(user) {
+
+      currentUser = user;
+
+      accountStatusCard.hidden = false;
+
+      loginRequiredCard.hidden = true;
+
+      orderFormCard.hidden = false;
+
+
+      accountStatusMessage.innerHTML =
+        "<p>Logged in as <strong>" +
+        escapeHtml(user.email || "") +
+        "</strong></p>";
+
+
+      emailInput.value =
+        user.email || "";
+
+
+      await loadProfile(user.id);
+
+      await loadSavedAddress(user.id);
+
+      selectProductFromUrl();
+
+    }
+
+
+    /*
+      NOT LOGGED IN
+    */
+
+    function showLoginRequired() {
+
+      currentUser = null;
+
+      orderFormCard.hidden = true;
+
+      accountStatusCard.hidden = true;
+
+      loginRequiredCard.hidden = false;
+
+    }
+
+
+    /*
+      LOAD PROFILE
+    */
+
+    async function loadProfile(userId) {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select(
+            "full_name, phone, whatsapp"
+          )
+          .eq(
+            "id",
+            userId
+          )
+          .maybeSingle();
+
+
+      if (error) {
+
+        console.error(
+          "Profile load error:",
+          error
+        );
+
+        return;
+
+      }
+
+
+      if (!data) {
+        return;
+      }
+
+
+      if (data.full_name) {
+
+        fullNameInput.value =
+          data.full_name;
+
+        addressFullNameInput.value =
+          data.full_name;
+
+      }
+
+
+      if (data.phone) {
+
+        phoneInput.value =
+          data.phone;
+
+        addressPhoneInput.value =
+          data.phone;
+
+      }
+
+    }
+
+
+    /*
+      LOAD SAVED ADDRESS
+    */
+
+    async function loadSavedAddress(userId) {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("addresses")
+          .select(
+            "id, full_name, house_number, street_locality, city, state, pin_code, country, phone"
+          )
+          .eq(
+            "user_id",
+            userId
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          )
+          .limit(1)
+          .maybeSingle();
+
+
+      if (error) {
+
+        console.error(
+          "Address load error:",
+          error
+        );
+
+        showAddressMessage(
+          "We could not load your saved address.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (!data) {
+
+        currentAddress = null;
+
+        showAddressMessage(
+          "No saved address yet. Enter your delivery address and save it."
+        );
+
+        return;
+
+      }
+
+
+      currentAddress = data;
+
+
+      addressFullNameInput.value =
+        data.full_name || "";
+
+      houseNumberInput.value =
+        data.house_number || "";
+
+      streetLocalityInput.value =
+        data.street_locality || "";
+
+      cityInput.value =
+        data.city || "";
+
+      stateInput.value =
+        data.state || "";
+
+      pinCodeInput.value =
+        data.pin_code || "";
+
+      countryInput.value =
+        data.country || "India";
+
+      addressPhoneInput.value =
+        data.phone || "";
+
+
+      showAddressMessage(
+        "Your saved delivery address has been loaded."
+      );
+
+    }
+
+
+    /*
+      SAVE ADDRESS
+    */
+
+    saveAddressButton.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentUser) {
+
+          showAddressMessage(
+            "Please log in first.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          !addressFullNameInput.value.trim() ||
+          !houseNumberInput.value.trim() ||
+          !streetLocalityInput.value.trim() ||
+          !cityInput.value.trim() ||
+          !stateInput.value.trim() ||
+          !pinCodeInput.value.trim() ||
+          !countryInput.value.trim() ||
+          !addressPhoneInput.value.trim()
+        ) {
+
+          showAddressMessage(
+            "Please complete all delivery address fields.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        saveAddressButton.disabled = true;
+
+        saveAddressButton.textContent =
+          "SAVING...";
+
+
+        try {
+
+          const addressData = {
+
+            user_id:
+              currentUser.id,
+
+            full_name:
+              addressFullNameInput.value.trim(),
+
+            house_number:
+              houseNumberInput.value.trim(),
+
+            street_locality:
+              streetLocalityInput.value.trim(),
+
+            city:
+              cityInput.value.trim(),
+
+            state:
+              stateInput.value.trim(),
+
+            pin_code:
+              pinCodeInput.value.trim(),
+
+            country:
+              countryInput.value.trim(),
+
+            phone:
+              addressPhoneInput.value.trim()
+
+          };
+
+
+          if (currentAddress && currentAddress.id) {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient
+                .from("addresses")
+                .update(addressData)
+                .eq(
+                  "id",
+                  currentAddress.id
+                )
+                .select()
+                .single();
+
+
+            if (error) {
+              throw error;
+            }
+
+            currentAddress = data;
+
+          } else {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient
+                .from("addresses")
+                .insert(addressData)
+                .select()
+                .single();
+
+
+            if (error) {
+              throw error;
+            }
+
+            currentAddress = data;
+
+          }
+
+
+          showAddressMessage(
+            "Your delivery address has been saved.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showAddressMessage(
+            error.message ||
+            "We could not save your address.",
+            "error"
+          );
+
+        } finally {
+
+          saveAddressButton.disabled =
+            false;
+
+          saveAddressButton.textContent =
+            "SAVE ADDRESS";
+
+        }
+
+      }
+    );
+
+
+    /*
+      PRODUCT FROM BUY NOW URL
+    */
+
+    function selectProductFromUrl() {
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+      const product =
+        params.get("product");
+
+
+      if (
+        product &&
+        verraProducts[product]
+      ) {
+
+        productSelect.value =
+          product;
+
+      }
+
+    }
+
+
+    /*
+      SUBMIT ORDER
+    */
+
+    orderForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        if (!currentUser) {
+
+          showOrderMessage(
+            "Please log in before placing your order.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const product =
+          productSelect.value;
+
+
+        if (!verraProducts[product]) {
+
+          showOrderMessage(
+            "Please select a lehenga.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /*
+          Save address automatically before
+          continuing to payment.
+        */
+
+        if (
+          !addressFullNameInput.value.trim() ||
+          !houseNumberInput.value.trim() ||
+          !streetLocalityInput.value.trim() ||
+          !cityInput.value.trim() ||
+          !stateInput.value.trim() ||
+          !pinCodeInput.value.trim() ||
+          !countryInput.value.trim() ||
+          !addressPhoneInput.value.trim()
+        ) {
+
+          showOrderMessage(
+            "Please complete your delivery address.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        submitOrderButton.disabled =
+          true;
+
+        submitOrderButton.textContent =
+          "SAVING ORDER DETAILS...";
+
+
+        try {
+
+          const addressData = {
+
+            user_id:
+              currentUser.id,
+
+            full_name:
+              addressFullNameInput.value.trim(),
+
+            house_number:
+              houseNumberInput.value.trim(),
+
+            street_locality:
+              streetLocalityInput.value.trim(),
+
+            city:
+              cityInput.value.trim(),
+
+            state:
+              stateInput.value.trim(),
+
+            pin_code:
+              pinCodeInput.value.trim(),
+
+            country:
+              countryInput.value.trim(),
+
+            phone:
+              addressPhoneInput.value.trim()
+
+          };
+
+
+          /*
+            Save/update address first.
+          */
+
+          if (
+            currentAddress &&
+            currentAddress.id
+          ) {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient
+                .from("addresses")
+                .update(addressData)
+                .eq(
+                  "id",
+                  currentAddress.id
+                )
+                .select()
+                .single();
+
+
+            if (error) {
+              throw error;
+            }
+
+            currentAddress = data;
+
+          } else {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient
+                .from("addresses")
+                .insert(addressData)
+                .select()
+                .single();
+
+
+            if (error) {
+              throw error;
+            }
+
+            currentAddress = data;
+
+          }
+
+
+          /*
+            For now, save the order details
+            locally and move to the payment
+            connection in the next step.
+          */
+
+          const orderDetails = {
+
+            product,
+
+            amount:
+              verraProducts[product],
+
+            blouse_preference:
+              document.getElementById(
+                "blousePreference"
+              ).value,
+
+            blouse_size:
+              document.getElementById(
+                "blouseSize"
+              ).value,
+
+            skirt_size:
+              document.getElementById(
+                "skirtSize"
+              ).value,
+
+            skirt_length:
+              document.getElementById(
+                "skirtLength"
+              ).value,
+
+            additional_requirements:
+              document.getElementById(
+                "additionalRequirements"
+              ).value.trim(),
+
+            customer_id:
+              currentUser.id,
+
+            name:
+              fullNameInput.value.trim(),
+
+            email:
+              emailInput.value.trim(),
+
+            phone:
+              phoneInput.value.trim(),
+
+            delivery_address: {
+              full_name:
+                addressFullNameInput.value.trim(),
+
+              house_number:
+                houseNumberInput.value.trim(),
+
+              street_locality:
+                streetLocalityInput.value.trim(),
+
+              city:
+                cityInput.value.trim(),
+
+              state:
+                stateInput.value.trim(),
+
+              pin_code:
+                pinCodeInput.value.trim(),
+
+              country:
+                countryInput.value.trim(),
+
+              phone:
+                addressPhoneInput.value.trim()
+            }
+
+          };
+
+
+          sessionStorage.setItem(
+            "verraPendingOrder",
+            JSON.stringify(orderDetails)
+          );
+
+
+          showOrderMessage(
+            "Your details are saved. Payment connection is the next step.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showOrderMessage(
+            error.message ||
+            "We could not save your order details.",
+            "error"
+          );
+
+        } finally {
+
+          submitOrderButton.disabled =
+            false;
+
+          submitOrderButton.textContent =
+            "CONTINUE TO PAYMENT";
+
+        }
+
+      }
+    );
+
+
+    /*
+      ESCAPE HTML
+    */
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /*
+      MOBILE MENU
+    */
+
+    if (
+      menuToggle &&
+      mobileMenu
+    ) {
+
+      menuToggle.addEventListener(
+        "click",
+        () => {
+
+          mobileMenu.classList.add(
+            "is-open"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+        }
+      );
+
+    }
+
+
+    if (
+      mobileMenuClose &&
+      mobileMenu
+    ) {
+
+      mobileMenuClose.addEventListener(
+        "click",
+        () => {
+
+          mobileMenu.classList.remove(
+            "is-open"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+      START
+    */
+
+    loadSupabase();
+
+  </script>
 
 </body>
 </html>
