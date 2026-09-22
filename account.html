@@ -4,470 +4,396 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Account | VERRA</title>
+  <title>My Account | VERRA</title>
+
+  <meta
+    name="description"
+    content="Create or access your VERRA customer account."
+  >
 
   <link rel="stylesheet" href="style.css">
 
-  <style>
-    .account-section {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 70px 24px 100px;
-    }
-
-    .account-card {
-      background: var(--cream);
-      border: 1px solid rgba(48, 35, 28, 0.14);
-      padding: 38px;
-      margin-top: 35px;
-    }
-
-    .account-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-
-    .account-tab {
-      flex: 1;
-      border: 1px solid rgba(48, 35, 28, 0.25);
-      background: transparent;
-      color: var(--espresso);
-      padding: 14px 16px;
-      cursor: pointer;
-      font-family: inherit;
-      letter-spacing: 0.08em;
-    }
-
-    .account-tab.active {
-      background: var(--espresso);
-      color: var(--cream);
-    }
-
-    .account-form {
-      display: none;
-    }
-
-    .account-form.active {
-      display: block;
-    }
-
-    .account-form .form-group {
-      margin-bottom: 22px;
-    }
-
-    .account-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-    }
-
-    .account-form input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      border: 1px solid rgba(48, 35, 28, 0.25);
-      background: #fff;
-      color: var(--espresso);
-      font: inherit;
-    }
-
-    .account-form input:focus {
-      outline: none;
-      border-color: var(--espresso);
-    }
-
-    .account-submit {
-      width: 100%;
-      border: none;
-      background: var(--espresso);
-      color: var(--cream);
-      padding: 16px;
-      cursor: pointer;
-      letter-spacing: 0.12em;
-      font-family: inherit;
-    }
-
-    .account-submit:disabled {
-      opacity: 0.6;
-      cursor: wait;
-    }
-
-    .account-message {
-      display: none;
-      margin-top: 22px;
-      padding: 15px;
-      border: 1px solid rgba(48, 35, 28, 0.18);
-      line-height: 1.6;
-    }
-
-    .account-message.show {
-      display: block;
-    }
-
-    .account-message.error {
-      border-color: #9b4b4b;
-    }
-
-    .account-message.success {
-      border-color: #66856b;
-    }
-
-    .account-privacy {
-      margin-top: 28px;
-      font-size: 13px;
-      line-height: 1.7;
-      opacity: 0.78;
-    }
-
-    .logged-in-panel {
-      display: none;
-      text-align: center;
-    }
-
-    .logged-in-panel.show {
-      display: block;
-    }
-
-    .logged-in-panel h2 {
-      margin-bottom: 14px;
-    }
-
-    .account-logout {
-      margin-top: 25px;
-      border: 1px solid rgba(48, 35, 28, 0.3);
-      background: transparent;
-      color: var(--espresso);
-      padding: 14px 25px;
-      cursor: pointer;
-      font-family: inherit;
-      letter-spacing: 0.08em;
-    }
-
-    @media (max-width: 600px) {
-      .account-section {
-        padding: 50px 18px 70px;
-      }
-
-      .account-card {
-        padding: 25px 20px;
-      }
-
-      .account-tabs {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
-  <!-- ANNOUNCEMENT -->
-  <div class="announcement">
-    MADE TO ORDER · READY TO WEAR · HANDCRAFTED FOR YOU
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <div class="announcement">
+      VERRA — MADE TO ORDER
+    </div>
   </div>
 
 
   <!-- HEADER -->
   <header class="site-header">
 
-    <a href="index.html" class="logo">
-      VERRA
-    </a>
+    <div class="header-inner">
 
-    <nav class="desktop-navigation">
-      <a href="products.html">LEHENGAS</a>
-      <a href="about.html">ABOUT</a>
-      <a href="contact.html">CONTACT</a>
-    </nav>
+      <a href="index.html" class="brand">
+        VERRA
+      </a>
 
-    <button
-      class="menu-button"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      data-menu-open
-    >
-      MENU
-    </button>
+      <nav class="desktop-nav">
+
+        <a href="products.html">
+          LEHENGAS
+        </a>
+
+        <a href="about.html">
+          ABOUT
+        </a>
+
+        <a href="contact.html">
+          CONTACT
+        </a>
+
+        <a href="account.html" class="active">
+          ACCOUNT
+        </a>
+
+      </nav>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
 
   </header>
 
 
   <!-- MOBILE MENU -->
-  <div class="menu-overlay" data-menu-close></div>
-
-  <aside class="mobile-menu">
+  <div class="mobile-menu" id="mobileMenu">
 
     <button
       class="mobile-menu-close"
+      id="mobileMenuClose"
       type="button"
-      data-menu-close
+      aria-label="Close menu"
     >
-      CLOSE
+      ×
     </button>
 
-    <nav class="mobile-navigation">
+    <a href="index.html">
+      HOME
+    </a>
 
-      <a href="index.html">HOME</a>
+    <a href="products.html">
+      LEHENGAS
+    </a>
 
-      <a href="products.html">LEHENGAS</a>
+    <a href="about.html">
+      ABOUT VERRA
+    </a>
 
-      <a href="about.html">ABOUT VERRA</a>
+    <a href="policies.html">
+      POLICIES
+    </a>
 
-      <a href="policies.html">POLICIES</a>
+    <a href="terms.html">
+      TERMS & CONDITIONS
+    </a>
 
-      <a href="terms.html">TERMS & CONDITIONS</a>
+    <a href="contact.html">
+      CONTACT
+    </a>
 
-      <a href="contact.html">CONTACT</a>
+    <a href="account.html">
+      ACCOUNT
+    </a>
 
-      <a href="account.html">MY ACCOUNT</a>
-
-    </nav>
-
-  </aside>
+  </div>
 
 
-  <main>
+  <!-- ACCOUNT PAGE -->
+  <main class="account-page">
 
-    <!-- ACCOUNT INTRO -->
-    <section class="page-intro">
+    <section class="account-intro">
 
       <p class="eyebrow">
         VERRA ACCOUNT
       </p>
 
       <h1>
-        Your VERRA<br>
-        account.
+        Your VERRA Account
       </h1>
 
       <p>
-        Create an account to securely save your details
+        Create an account to save your delivery information
         and make future orders easier.
       </p>
 
     </section>
 
 
-    <!-- ACCOUNT -->
-    <section class="account-section">
+    <!-- AUTH AREA -->
+    <section class="account-card" id="authArea">
 
-      <div class="account-card">
+      <div class="account-tabs">
 
-        <!-- AUTH AREA -->
-        <div id="auth-area">
-
-          <div class="account-tabs">
-
-            <button
-              type="button"
-              class="account-tab active"
-              id="login-tab"
-            >
-              LOGIN
-            </button>
-
-            <button
-              type="button"
-              class="account-tab"
-              id="signup-tab"
-            >
-              CREATE ACCOUNT
-            </button>
-
-          </div>
-
-
-          <!-- LOGIN FORM -->
-          <form
-            id="login-form"
-            class="account-form active"
-          >
-
-            <div class="form-group">
-
-              <label for="login-email">
-                EMAIL
-              </label>
-
-              <input
-                type="email"
-                id="login-email"
-                autocomplete="email"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="login-password">
-                PASSWORD
-              </label>
-
-              <input
-                type="password"
-                id="login-password"
-                autocomplete="current-password"
-                required
-              >
-
-            </div>
-
-
-            <button
-              type="submit"
-              class="account-submit"
-            >
-              LOGIN
-            </button>
-
-          </form>
-
-
-          <!-- SIGNUP FORM -->
-          <form
-            id="signup-form"
-            class="account-form"
-          >
-
-            <div class="form-group">
-
-              <label for="signup-name">
-                FULL NAME
-              </label>
-
-              <input
-                type="text"
-                id="signup-name"
-                autocomplete="name"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="signup-email">
-                EMAIL
-              </label>
-
-              <input
-                type="email"
-                id="signup-email"
-                autocomplete="email"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="signup-phone">
-                PHONE / WHATSAPP
-              </label>
-
-              <input
-                type="tel"
-                id="signup-phone"
-                autocomplete="tel"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="signup-password">
-                PASSWORD
-              </label>
-
-              <input
-                type="password"
-                id="signup-password"
-                autocomplete="new-password"
-                minlength="8"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="signup-password-confirm">
-                CONFIRM PASSWORD
-              </label>
-
-              <input
-                type="password"
-                id="signup-password-confirm"
-                autocomplete="new-password"
-                minlength="8"
-                required
-              >
-
-            </div>
-
-
-            <button
-              type="submit"
-              class="account-submit"
-            >
-              CREATE ACCOUNT
-            </button>
-
-          </form>
-
-
-          <div
-            id="account-message"
-            class="account-message"
-          ></div>
-
-
-          <p class="account-privacy">
-            Your personal information is kept private and
-            used for your VERRA account, order fulfilment,
-            delivery and necessary order communication.
-          </p>
-
-        </div>
-
-
-        <!-- LOGGED-IN PANEL -->
-        <div
-          id="logged-in-panel"
-          class="logged-in-panel"
+        <button
+          type="button"
+          class="account-tab active"
+          id="loginTab"
         >
+          LOGIN
+        </button>
 
-          <p class="eyebrow">
-            WELCOME BACK
-          </p>
-
-          <h2>
-            Your account is active.
-          </h2>
-
-          <p id="logged-in-email"></p>
-
-          <button
-            type="button"
-            class="account-logout"
-            id="logout-button"
-          >
-            LOG OUT
-          </button>
-
-        </div>
+        <button
+          type="button"
+          class="account-tab"
+          id="signupTab"
+        >
+          CREATE ACCOUNT
+        </button>
 
       </div>
+
+
+      <!-- MESSAGE -->
+      <div
+        class="account-message"
+        id="accountMessage"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+
+      <!-- LOGIN -->
+      <form id="loginForm" class="account-form">
+
+        <div class="form-group">
+
+          <label for="loginEmail">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="loginEmail"
+            name="email"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="loginPassword">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="loginPassword"
+            name="password"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="account-submit"
+          id="loginButton"
+        >
+          LOGIN
+        </button>
+
+      </form>
+
+
+      <!-- SIGN UP -->
+      <form
+        id="signupForm"
+        class="account-form"
+        hidden
+      >
+
+        <div class="form-group">
+
+          <label for="signupName">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            id="signupName"
+            name="full_name"
+            autocomplete="name"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="signupEmail">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="signupEmail"
+            name="email"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="signupPhone">
+            Phone / WhatsApp
+          </label>
+
+          <input
+            type="tel"
+            id="signupPhone"
+            name="phone"
+            autocomplete="tel"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="signupPassword">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="signupPassword"
+            name="password"
+            autocomplete="new-password"
+            minlength="8"
+            required
+          >
+
+          <small>
+            Use at least 8 characters.
+          </small>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="signupPasswordConfirm">
+            Confirm Password
+          </label>
+
+          <input
+            type="password"
+            id="signupPasswordConfirm"
+            name="password_confirm"
+            autocomplete="new-password"
+            minlength="8"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="account-submit"
+          id="signupButton"
+        >
+          CREATE ACCOUNT
+        </button>
+
+      </form>
+
+
+      <div class="account-privacy">
+
+        <h3>
+          Your information
+        </h3>
+
+        <p>
+          Your account information and delivery details are
+          kept private and are used for order fulfilment,
+          delivery and necessary order communication.
+        </p>
+
+        <p>
+          Your password is handled securely by Supabase
+          Authentication and is never stored by VERRA
+          as plain text.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- LOGGED-IN AREA -->
+    <section
+      class="account-card logged-in-card"
+      id="loggedInArea"
+      hidden
+    >
+
+      <p class="eyebrow">
+        WELCOME BACK
+      </p>
+
+      <h2 id="accountWelcome">
+        Welcome to VERRA
+      </h2>
+
+      <p id="accountEmailDisplay"></p>
+
+      <div class="account-actions">
+
+        <a
+          href="products.html"
+          class="account-action-button"
+        >
+          SHOP LEHENGAS
+        </a>
+
+        <a
+          href="order.html"
+          class="account-action-button secondary"
+        >
+          PLACE AN ORDER
+        </a>
+
+        <button
+          type="button"
+          class="account-action-button logout-button"
+          id="logoutButton"
+        >
+          LOG OUT
+        </button>
+
+      </div>
+
+      <p class="account-logout-note">
+        For your privacy, logging out will require you
+        to sign in again before accessing your account.
+      </p>
 
     </section>
 
@@ -477,46 +403,46 @@
   <!-- FOOTER -->
   <footer class="site-footer">
 
-    <div class="footer-brand">
+    <div class="footer-inner">
 
-      <a href="index.html" class="logo">
+      <div class="footer-brand">
         VERRA
-      </a>
+      </div>
 
-      <p>
-        Your outfit is the reflection of what you are.
-      </p>
+      <div class="footer-links">
 
-    </div>
+        <a href="index.html">
+          Home
+        </a>
 
+        <a href="products.html">
+          Lehengas
+        </a>
 
-    <div class="footer-links">
+        <a href="about.html">
+          About VERRA
+        </a>
 
-      <a href="index.html">HOME</a>
+        <a href="policies.html">
+          Policies
+        </a>
 
-      <a href="products.html">LEHENGAS</a>
+        <a href="terms.html">
+          Terms & Conditions
+        </a>
 
-      <a href="about.html">ABOUT VERRA</a>
+        <a href="contact.html">
+          Contact
+        </a>
 
-      <a href="policies.html">POLICIES</a>
+        <a href="account.html">
+          Account
+        </a>
 
-      <a href="terms.html">TERMS & CONDITIONS</a>
+      </div>
 
-      <a href="contact.html">CONTACT</a>
-
-      <a href="account.html">MY ACCOUNT</a>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-      <p>
-        © VERRA. ALL RIGHTS RESERVED.
-      </p>
-
-      <p>
-        GOA, INDIA
+      <p class="footer-copy">
+        © VERRA. All rights reserved.
       </p>
 
     </div>
@@ -524,424 +450,439 @@
   </footer>
 
 
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-  <!-- VERRA MAIN SCRIPT -->
-  <script src="script.js"></script>
-
-
+  <!-- ACCOUNT SCRIPT -->
   <script>
 
-    /* =========================================
-       VERRA SUPABASE ACCOUNT
-    ========================================= */
-
-    const SUPABASE_URL =
-      "%%SUPABASE_URL%%";
-
-    const SUPABASE_PUBLISHABLE_KEY =
-      "%%SUPABASE_PUBLISHABLE_KEY%%";
+    let supabaseClient = null;
 
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
+    /*
+      LOAD SUPABASE CONFIG
+    */
 
+    async function loadSupabase() {
 
-    /* =========================================
-       ELEMENTS
-    ========================================= */
+      try {
 
-    const loginTab =
-      document.getElementById("login-tab");
+        const response = await fetch("/api/public-config");
 
-    const signupTab =
-      document.getElementById("signup-tab");
+        if (!response.ok) {
+          throw new Error("Could not load Supabase configuration.");
+        }
 
-    const loginForm =
-      document.getElementById("login-form");
+        const config = await response.json();
 
-    const signupForm =
-      document.getElementById("signup-form");
+        if (
+          !config.supabaseUrl ||
+          !config.supabasePublishableKey
+        ) {
+          throw new Error("Supabase configuration is incomplete.");
+        }
 
-    const authArea =
-      document.getElementById("auth-area");
+        supabaseClient =
+          window.supabase.createClient(
+            config.supabaseUrl,
+            config.supabasePublishableKey
+          );
 
-    const loggedInPanel =
-      document.getElementById("logged-in-panel");
+        await checkCurrentSession();
 
-    const loggedInEmail =
-      document.getElementById("logged-in-email");
+        supabaseClient.auth.onAuthStateChange(
+          (event, session) => {
 
-    const logoutButton =
-      document.getElementById("logout-button");
+            if (event === "SIGNED_OUT") {
+              showLoggedOut();
+              return;
+            }
 
-    const messageBox =
-      document.getElementById("account-message");
+            if (session) {
+              showLoggedIn(session);
+            }
 
+          }
+        );
 
-    /* =========================================
-       MESSAGE
-    ========================================= */
+      } catch (error) {
 
-    function showAccountMessage(
-      message,
-      type = ""
-    ) {
+        console.error(error);
 
-      if (!messageBox) {
-        return;
-      }
+        showMessage(
+          "We could not connect to your account service. Please try again.",
+          "error"
+        );
 
-      messageBox.textContent =
-        message;
-
-      messageBox.className =
-        "account-message show";
-
-      if (type) {
-        messageBox.classList.add(type);
       }
 
     }
 
 
-    function clearAccountMessage() {
+    /*
+      ELEMENTS
+    */
 
-      if (!messageBox) {
-        return;
+    const loginTab =
+      document.getElementById("loginTab");
+
+    const signupTab =
+      document.getElementById("signupTab");
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const signupForm =
+      document.getElementById("signupForm");
+
+    const authArea =
+      document.getElementById("authArea");
+
+    const loggedInArea =
+      document.getElementById("loggedInArea");
+
+    const accountMessage =
+      document.getElementById("accountMessage");
+
+    const accountWelcome =
+      document.getElementById("accountWelcome");
+
+    const accountEmailDisplay =
+      document.getElementById("accountEmailDisplay");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const mobileMenuClose =
+      document.getElementById("mobileMenuClose");
+
+
+    /*
+      MESSAGE
+    */
+
+    function showMessage(message, type = "") {
+
+      accountMessage.textContent = message;
+
+      accountMessage.className =
+        "account-message";
+
+      if (type) {
+        accountMessage.classList.add(type);
       }
 
-      messageBox.textContent = "";
+    }
 
-      messageBox.className =
+
+    function clearMessage() {
+
+      accountMessage.textContent = "";
+
+      accountMessage.className =
         "account-message";
 
     }
 
 
-    /* =========================================
-       SWITCH LOGIN / SIGNUP
-    ========================================= */
+    /*
+      TABS
+    */
 
-    loginTab?.addEventListener(
+    loginTab.addEventListener(
       "click",
       () => {
-
-        clearAccountMessage();
 
         loginTab.classList.add("active");
+
         signupTab.classList.remove("active");
 
-        loginForm.classList.add("active");
-        signupForm.classList.remove("active");
+        loginForm.hidden = false;
+
+        signupForm.hidden = true;
+
+        clearMessage();
 
       }
     );
 
 
-    signupTab?.addEventListener(
+    signupTab.addEventListener(
       "click",
       () => {
 
-        clearAccountMessage();
-
         signupTab.classList.add("active");
+
         loginTab.classList.remove("active");
 
-        signupForm.classList.add("active");
-        loginForm.classList.remove("active");
+        signupForm.hidden = false;
+
+        loginForm.hidden = true;
+
+        clearMessage();
 
       }
     );
 
 
-    /* =========================================
-       SHOW LOGGED-IN ACCOUNT
-    ========================================= */
+    /*
+      LOGIN
+    */
 
-    function showLoggedInAccount(user) {
-
-      authArea.style.display =
-        "none";
-
-      loggedInPanel.classList.add(
-        "show"
-      );
-
-      loggedInEmail.textContent =
-        user.email || "";
-
-    }
-
-
-    /* =========================================
-       SHOW AUTH FORMS
-    ========================================= */
-
-    function showAuthForms() {
-
-      authArea.style.display =
-        "block";
-
-      loggedInPanel.classList.remove(
-        "show"
-      );
-
-    }
-
-
-    /* =========================================
-       LOGIN
-    ========================================= */
-
-    loginForm?.addEventListener(
+    loginForm.addEventListener(
       "submit",
       async (event) => {
 
         event.preventDefault();
 
-        clearAccountMessage();
+        if (!supabaseClient) {
+
+          showMessage(
+            "Please wait a moment and try again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        const button =
+          document.getElementById("loginButton");
+
+        button.disabled = true;
+
+        button.textContent =
+          "LOGGING IN...";
+
+        clearMessage();
 
         const email =
-          document
-            .getElementById("login-email")
+          document.getElementById("loginEmail")
             .value
             .trim();
 
         const password =
-          document
-            .getElementById("login-password")
+          document.getElementById("loginPassword")
             .value;
 
 
-        const submitButton =
-          loginForm.querySelector(
-            ".account-submit"
-          );
+        try {
 
-        submitButton.disabled =
-          true;
-
-        submitButton.textContent =
-          "LOGGING IN...";
+          const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+              email,
+              password
+            });
 
 
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.signInWithPassword({
-            email,
-            password
-          });
+          if (error) {
+            throw error;
+          }
 
 
-        submitButton.disabled =
-          false;
+          if (data && data.session) {
 
-        submitButton.textContent =
-          "LOGIN";
+            showMessage(
+              "You are now logged in.",
+              "success"
+            );
+
+            showLoggedIn(data.session);
+
+          }
 
 
-        if (error) {
+        } catch (error) {
 
-          showAccountMessage(
-            error.message,
+          console.error(error);
+
+          showMessage(
+            error.message ||
+            "Login failed. Please check your details.",
             "error"
           );
 
-          return;
+        } finally {
+
+          button.disabled = false;
+
+          button.textContent =
+            "LOGIN";
 
         }
-
-
-        if (!data.user) {
-
-          showAccountMessage(
-            "We could not complete the login. Please try again.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        showLoggedInAccount(
-          data.user
-        );
 
       }
     );
 
 
-    /* =========================================
-       CREATE ACCOUNT
-    ========================================= */
+    /*
+      CREATE ACCOUNT
+    */
 
-    signupForm?.addEventListener(
+    signupForm.addEventListener(
       "submit",
       async (event) => {
 
         event.preventDefault();
 
-        clearAccountMessage();
+        if (!supabaseClient) {
+
+          showMessage(
+            "Please wait a moment and try again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        const button =
+          document.getElementById("signupButton");
+
+        button.disabled = true;
+
+        button.textContent =
+          "CREATING ACCOUNT...";
+
+        clearMessage();
 
 
-        const name =
-          document
-            .getElementById("signup-name")
+        const fullName =
+          document.getElementById("signupName")
             .value
             .trim();
 
         const email =
-          document
-            .getElementById("signup-email")
+          document.getElementById("signupEmail")
             .value
             .trim();
 
         const phone =
-          document
-            .getElementById("signup-phone")
+          document.getElementById("signupPhone")
             .value
             .trim();
 
         const password =
-          document
-            .getElementById("signup-password")
+          document.getElementById("signupPassword")
             .value;
 
         const passwordConfirm =
-          document
-            .getElementById("signup-password-confirm")
+          document.getElementById("signupPasswordConfirm")
             .value;
 
 
-        if (
-          password !==
-          passwordConfirm
-        ) {
+        if (password !== passwordConfirm) {
 
-          showAccountMessage(
+          showMessage(
             "Passwords do not match.",
             "error"
           );
 
+          button.disabled = false;
+
+          button.textContent =
+            "CREATE ACCOUNT";
+
           return;
 
         }
 
 
-        if (password.length < 8) {
+        try {
 
-          showAccountMessage(
-            "Your password must contain at least 8 characters.",
+          const redirectUrl =
+            window.location.origin +
+            "/account.html";
+
+
+          const { data, error } =
+            await supabaseClient.auth.signUp({
+
+              email,
+
+              password,
+
+              options: {
+
+                data: {
+                  full_name: fullName,
+                  phone: phone,
+                  whatsapp: phone
+                },
+
+                emailRedirectTo:
+                  redirectUrl
+
+              }
+
+            });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          /*
+            With email confirmation enabled,
+            Supabase normally returns a user
+            without an active session.
+          */
+
+          if (
+            data &&
+            data.user &&
+            !data.session
+          ) {
+
+            showMessage(
+              "Account created. Please check your email and confirm your email address before logging in.",
+              "success"
+            );
+
+            signupForm.reset();
+
+          } else if (
+            data &&
+            data.session
+          ) {
+
+            showMessage(
+              "Your account has been created.",
+              "success"
+            );
+
+            showLoggedIn(data.session);
+
+          } else {
+
+            showMessage(
+              "Your account was created. Please check your email to continue.",
+              "success"
+            );
+
+          }
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            error.message ||
+            "We could not create your account. Please try again.",
             "error"
           );
 
-          return;
+        } finally {
 
-        }
+          button.disabled = false;
 
-
-        const submitButton =
-          signupForm.querySelector(
-            ".account-submit"
-          );
-
-        submitButton.disabled =
-          true;
-
-        submitButton.textContent =
-          "CREATING ACCOUNT...";
-
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.signUp({
-
-            email,
-
-            password,
-
-            options: {
-
-              data: {
-
-                full_name:
-                  name,
-
-                phone:
-                  phone,
-
-                whatsapp:
-                  phone
-
-              },
-
-              emailRedirectTo:
-                window.location.origin +
-                "/account.html"
-
-            }
-
-          });
-
-
-        submitButton.disabled =
-          false;
-
-        submitButton.textContent =
-          "CREATE ACCOUNT";
-
-
-        if (error) {
-
-          showAccountMessage(
-            error.message,
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        /*
-          With email confirmation enabled,
-          Supabase normally returns a user
-          without an active session.
-        */
-
-        if (
-          data.user &&
-          !data.session
-        ) {
-
-          showAccountMessage(
-            "Your account has been created. Please check your email and click the confirmation link before logging in.",
-            "success"
-          );
-
-          signupForm.reset();
-
-          return;
-
-        }
-
-
-        if (data.user) {
-
-          showLoggedInAccount(
-            data.user
-          );
+          button.textContent =
+            "CREATE ACCOUNT";
 
         }
 
@@ -949,117 +890,209 @@
     );
 
 
-    /* =========================================
-       LOG OUT
-    ========================================= */
+    /*
+      CHECK CURRENT SESSION
+    */
 
-    logoutButton?.addEventListener(
-      "click",
-      async () => {
+    async function checkCurrentSession() {
 
-        const {
-          error
-        } =
-          await supabaseClient.auth.signOut();
-
-
-        if (error) {
-
-          showAccountMessage(
-            error.message,
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        showAuthForms();
-
-        loginForm.reset();
-
-        signupForm.reset();
-
-        showAccountMessage(
-          "You have been logged out.",
-          "success"
-        );
-
+      if (!supabaseClient) {
+        return;
       }
-    );
 
-
-    /* =========================================
-       CHECK EXISTING SESSION
-    ========================================= */
-
-    async function checkAccountSession() {
-
-      const {
-        data,
-        error
-      } =
+      const { data, error } =
         await supabaseClient.auth.getSession();
 
 
       if (error) {
 
-        console.error(
-          "Supabase session error:",
-          error
-        );
+        console.error(error);
+
+        showLoggedOut();
 
         return;
 
       }
 
 
-      if (
-        data.session &&
-        data.session.user
-      ) {
+      if (data && data.session) {
 
-        showLoggedInAccount(
-          data.session.user
-        );
+        showLoggedIn(data.session);
 
       } else {
 
-        showAuthForms();
+        showLoggedOut();
 
       }
 
     }
 
 
-    checkAccountSession();
+    /*
+      SHOW LOGGED IN
+    */
+
+    function showLoggedIn(session) {
+
+      if (!session || !session.user) {
+        return;
+      }
+
+      authArea.hidden = true;
+
+      loggedInArea.hidden = false;
 
 
-    /* =========================================
-       AUTH STATE CHANGES
-    ========================================= */
+      const user =
+        session.user;
 
-    supabaseClient.auth.onAuthStateChange(
-      (event, session) => {
 
-        if (
-          session &&
-          session.user
-        ) {
+      const fullName =
+        user.user_metadata &&
+        user.user_metadata.full_name
+          ? user.user_metadata.full_name
+          : "Welcome back";
 
-          showLoggedInAccount(
-            session.user
+
+      accountWelcome.textContent =
+        "Welcome, " + fullName;
+
+
+      accountEmailDisplay.textContent =
+        user.email || "";
+
+    }
+
+
+    /*
+      SHOW LOGGED OUT
+    */
+
+    function showLoggedOut() {
+
+      authArea.hidden = false;
+
+      loggedInArea.hidden = true;
+
+      loginForm.hidden = false;
+
+      signupForm.hidden = true;
+
+      loginTab.classList.add("active");
+
+      signupTab.classList.remove("active");
+
+    }
+
+
+    /*
+      LOGOUT
+    */
+
+    logoutButton.addEventListener(
+      "click",
+      async () => {
+
+        if (!supabaseClient) {
+          return;
+        }
+
+        logoutButton.disabled = true;
+
+        logoutButton.textContent =
+          "LOGGING OUT...";
+
+
+        try {
+
+          const { error } =
+            await supabaseClient.auth.signOut();
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          showMessage(
+            "You have been logged out.",
+            "success"
           );
 
-        } else {
 
-          showAuthForms();
+          showLoggedOut();
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            error.message ||
+            "Logout failed. Please try again.",
+            "error"
+          );
+
+        } finally {
+
+          logoutButton.disabled = false;
+
+          logoutButton.textContent =
+            "LOG OUT";
 
         }
 
       }
     );
+
+
+    /*
+      MOBILE MENU
+    */
+
+    if (menuToggle && mobileMenu) {
+
+      menuToggle.addEventListener(
+        "click",
+        () => {
+
+          mobileMenu.classList.add("is-open");
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+        }
+      );
+
+    }
+
+
+    if (mobileMenuClose && mobileMenu) {
+
+      mobileMenuClose.addEventListener(
+        "click",
+        () => {
+
+          mobileMenu.classList.remove("is-open");
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+      START
+    */
+
+    loadSupabase();
 
   </script>
 
