@@ -1443,3 +1443,29 @@ button {
   }
 
 }
+
+/* ACCOUNT FORGOT PASSWORD */
+
+.account-link-button {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  color: var(--espresso);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  text-align: center;
+}
+
+.account-link-button:hover {
+  text-decoration: underline;
+}
+
+.account-link-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
