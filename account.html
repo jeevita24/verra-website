@@ -21,7 +21,6 @@
 
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
   <div class="announcement-bar">
     <div class="announcement">
       VERRA — MADE TO ORDER
@@ -29,7 +28,6 @@
   </div>
 
 
-  <!-- HEADER -->
   <header class="site-header">
 
     <div class="header-inner">
@@ -73,7 +71,6 @@
   </header>
 
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
 
     <button
@@ -116,7 +113,6 @@
   </div>
 
 
-  <!-- ACCOUNT PAGE -->
   <main class="account-page">
 
     <section class="account-intro">
@@ -137,7 +133,95 @@
     </section>
 
 
-    <!-- AUTH AREA -->
+    <!-- RESET PASSWORD AREA -->
+
+    <section
+      class="account-card"
+      id="resetPasswordArea"
+      hidden
+    >
+
+      <p class="eyebrow">
+        PASSWORD RESET
+      </p>
+
+      <h2>
+        Create a new password
+      </h2>
+
+      <p>
+        Choose a new password for your VERRA account.
+      </p>
+
+
+      <div
+        class="account-message"
+        id="resetMessage"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+
+      <form
+        id="resetPasswordForm"
+        class="account-form"
+      >
+
+        <div class="form-group">
+
+          <label for="newPassword">
+            New Password
+          </label>
+
+          <input
+            type="password"
+            id="newPassword"
+            name="new_password"
+            autocomplete="new-password"
+            minlength="8"
+            required
+          >
+
+          <small>
+            Use at least 8 characters.
+          </small>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="newPasswordConfirm">
+            Confirm New Password
+          </label>
+
+          <input
+            type="password"
+            id="newPasswordConfirm"
+            name="new_password_confirm"
+            autocomplete="new-password"
+            minlength="8"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="account-submit"
+          id="resetPasswordButton"
+        >
+          UPDATE PASSWORD
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- LOGIN / SIGNUP AREA -->
+
     <section
       class="account-card"
       id="authArea"
@@ -164,7 +248,6 @@
       </div>
 
 
-      <!-- MESSAGE -->
       <div
         class="account-message"
         id="accountMessage"
@@ -174,6 +257,7 @@
 
 
       <!-- LOGIN -->
+
       <form
         id="loginForm"
         class="account-form"
@@ -222,7 +306,6 @@
         </button>
 
 
-        <!-- FORGOT PASSWORD -->
         <button
           type="button"
           class="account-link-button"
@@ -234,7 +317,8 @@
       </form>
 
 
-      <!-- SIGN UP -->
+      <!-- CREATE ACCOUNT -->
+
       <form
         id="signupForm"
         class="account-form"
@@ -343,7 +427,6 @@
       </form>
 
 
-      <!-- PRIVACY -->
       <div class="account-privacy">
 
         <h3>
@@ -368,6 +451,7 @@
 
 
     <!-- LOGGED-IN AREA -->
+
     <section
       class="account-card logged-in-card"
       id="loggedInArea"
@@ -422,7 +506,6 @@
   </main>
 
 
-  <!-- FOOTER -->
   <footer class="site-footer">
 
     <div class="footer-inner">
@@ -474,7 +557,6 @@
   </footer>
 
 
-  <!-- ACCOUNT SCRIPT -->
   <script>
 
     let supabaseClient = null;
@@ -517,6 +599,18 @@
     const forgotPasswordButton =
       document.getElementById("forgotPasswordButton");
 
+    const resetPasswordArea =
+      document.getElementById("resetPasswordArea");
+
+    const resetPasswordForm =
+      document.getElementById("resetPasswordForm");
+
+    const resetMessage =
+      document.getElementById("resetMessage");
+
+    const resetPasswordButton =
+      document.getElementById("resetPasswordButton");
+
     const menuToggle =
       document.getElementById("menuToggle");
 
@@ -528,12 +622,13 @@
 
 
     /*
-      MESSAGE
+      ACCOUNT MESSAGE
     */
 
     function showMessage(message, type = "") {
 
-      accountMessage.textContent = message;
+      accountMessage.textContent =
+        message;
 
       accountMessage.className =
         "account-message";
@@ -547,9 +642,40 @@
 
     function clearMessage() {
 
-      accountMessage.textContent = "";
+      accountMessage.textContent =
+        "";
 
       accountMessage.className =
+        "account-message";
+
+    }
+
+
+    /*
+      RESET MESSAGE
+    */
+
+    function showResetMessage(message, type = "") {
+
+      resetMessage.textContent =
+        message;
+
+      resetMessage.className =
+        "account-message";
+
+      if (type) {
+        resetMessage.classList.add(type);
+      }
+
+    }
+
+
+    function clearResetMessage() {
+
+      resetMessage.textContent =
+        "";
+
+      resetMessage.className =
         "account-message";
 
     }
@@ -567,9 +693,11 @@
 
         signupTab.classList.remove("active");
 
-        loginForm.hidden = false;
+        loginForm.hidden =
+          false;
 
-        signupForm.hidden = true;
+        signupForm.hidden =
+          true;
 
         clearMessage();
 
@@ -585,9 +713,11 @@
 
         loginTab.classList.remove("active");
 
-        signupForm.hidden = false;
+        signupForm.hidden =
+          false;
 
-        loginForm.hidden = true;
+        loginForm.hidden =
+          true;
 
         clearMessage();
 
@@ -616,34 +746,47 @@
 
         }
 
-        const button =
-          document.getElementById("loginButton");
 
-        button.disabled = true;
+        const button =
+          document.getElementById(
+            "loginButton"
+          );
+
+
+        button.disabled =
+          true;
 
         button.textContent =
           "LOGGING IN...";
+
 
         clearMessage();
 
 
         const email =
-          document.getElementById("loginEmail")
+          document
+            .getElementById("loginEmail")
             .value
             .trim();
 
+
         const password =
-          document.getElementById("loginPassword")
+          document
+            .getElementById("loginPassword")
             .value;
 
 
         try {
 
           const { data, error } =
-            await supabaseClient.auth.signInWithPassword({
-              email,
-              password
-            });
+            await supabaseClient.auth
+              .signInWithPassword({
+
+                email,
+
+                password
+
+              });
 
 
           if (error) {
@@ -661,7 +804,9 @@
               "success"
             );
 
-            showLoggedIn(data.session);
+            showLoggedIn(
+              data.session
+            );
 
           }
 
@@ -678,7 +823,8 @@
 
         } finally {
 
-          button.disabled = false;
+          button.disabled =
+            false;
 
           button.textContent =
             "LOGIN";
@@ -710,7 +856,8 @@
 
 
         const email =
-          document.getElementById("loginEmail")
+          document
+            .getElementById("loginEmail")
             .value
             .trim();
 
@@ -731,10 +878,12 @@
         }
 
 
-        forgotPasswordButton.disabled = true;
+        forgotPasswordButton.disabled =
+          true;
 
         forgotPasswordButton.textContent =
           "SENDING...";
+
 
         clearMessage();
 
@@ -743,7 +892,7 @@
 
           const redirectUrl =
             window.location.origin +
-            "/account.html?reset=true";
+            "/account.html";
 
 
           const { error } =
@@ -751,7 +900,8 @@
               .resetPasswordForEmail(
                 email,
                 {
-                  redirectTo: redirectUrl
+                  redirectTo:
+                    redirectUrl
                 }
               );
 
@@ -779,7 +929,8 @@
 
         } finally {
 
-          forgotPasswordButton.disabled = false;
+          forgotPasswordButton.disabled =
+            false;
 
           forgotPasswordButton.textContent =
             "FORGOT PASSWORD?";
@@ -800,6 +951,7 @@
 
         event.preventDefault();
 
+
         if (!supabaseClient) {
 
           showMessage(
@@ -811,49 +963,70 @@
 
         }
 
-        const button =
-          document.getElementById("signupButton");
 
-        button.disabled = true;
+        const button =
+          document.getElementById(
+            "signupButton"
+          );
+
+
+        button.disabled =
+          true;
 
         button.textContent =
           "CREATING ACCOUNT...";
+
 
         clearMessage();
 
 
         const fullName =
-          document.getElementById("signupName")
+          document
+            .getElementById("signupName")
             .value
             .trim();
+
 
         const email =
-          document.getElementById("signupEmail")
+          document
+            .getElementById("signupEmail")
             .value
             .trim();
+
 
         const phone =
-          document.getElementById("signupPhone")
+          document
+            .getElementById("signupPhone")
             .value
             .trim();
 
+
         const password =
-          document.getElementById("signupPassword")
+          document
+            .getElementById("signupPassword")
             .value;
+
 
         const passwordConfirm =
-          document.getElementById("signupPasswordConfirm")
+          document
+            .getElementById(
+              "signupPasswordConfirm"
+            )
             .value;
 
 
-        if (password !== passwordConfirm) {
+        if (
+          password !==
+          passwordConfirm
+        ) {
 
           showMessage(
             "Passwords do not match.",
             "error"
           );
 
-          button.disabled = false;
+          button.disabled =
+            false;
 
           button.textContent =
             "CREATE ACCOUNT";
@@ -871,26 +1044,32 @@
 
 
           const { data, error } =
-            await supabaseClient.auth.signUp({
+            await supabaseClient.auth
+              .signUp({
 
-              email,
+                email,
 
-              password,
+                password,
 
-              options: {
+                options: {
 
-                data: {
-                  full_name: fullName,
-                  phone: phone,
-                  whatsapp: phone
-                },
+                  data: {
+                    full_name:
+                      fullName,
 
-                emailRedirectTo:
-                  redirectUrl
+                    phone:
+                      phone,
 
-              }
+                    whatsapp:
+                      phone
+                  },
 
-            });
+                  emailRedirectTo:
+                    redirectUrl
+
+                }
+
+              });
 
 
           if (error) {
@@ -921,7 +1100,9 @@
               "success"
             );
 
-            showLoggedIn(data.session);
+            showLoggedIn(
+              data.session
+            );
 
           } else {
 
@@ -945,7 +1126,8 @@
 
         } finally {
 
-          button.disabled = false;
+          button.disabled =
+            false;
 
           button.textContent =
             "CREATE ACCOUNT";
@@ -957,7 +1139,161 @@
 
 
     /*
-      CHECK CURRENT SESSION
+      UPDATE PASSWORD
+    */
+
+    resetPasswordForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        if (!supabaseClient) {
+
+          showResetMessage(
+            "Please wait a moment and try again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const newPassword =
+          document
+            .getElementById("newPassword")
+            .value;
+
+
+        const confirmPassword =
+          document
+            .getElementById(
+              "newPasswordConfirm"
+            )
+            .value;
+
+
+        if (
+          newPassword.length < 8
+        ) {
+
+          showResetMessage(
+            "Your new password must be at least 8 characters.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          newPassword !==
+          confirmPassword
+        ) {
+
+          showResetMessage(
+            "Passwords do not match.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        resetPasswordButton.disabled =
+          true;
+
+        resetPasswordButton.textContent =
+          "UPDATING...";
+
+
+        clearResetMessage();
+
+
+        try {
+
+          const { error } =
+            await supabaseClient.auth
+              .updateUser({
+
+                password:
+                  newPassword
+
+              });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          showResetMessage(
+            "Your password has been updated successfully. You can now log in with your new password.",
+            "success"
+          );
+
+
+          resetPasswordForm.reset();
+
+
+          setTimeout(
+            () => {
+
+              resetPasswordArea.hidden =
+                true;
+
+              authArea.hidden =
+                false;
+
+              loginTab.classList.add(
+                "active"
+              );
+
+              signupTab.classList.remove(
+                "active"
+              );
+
+              loginForm.hidden =
+                false;
+
+              signupForm.hidden =
+                true;
+
+            },
+            2500
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showResetMessage(
+            error.message ||
+            "We could not update your password. Please request a new reset link.",
+            "error"
+          );
+
+        } finally {
+
+          resetPasswordButton.disabled =
+            false;
+
+          resetPasswordButton.textContent =
+            "UPDATE PASSWORD";
+
+        }
+
+      }
+    );
+
+
+    /*
+      CHECK SESSION
     */
 
     async function checkCurrentSession() {
@@ -968,7 +1304,8 @@
 
 
       const { data, error } =
-        await supabaseClient.auth.getSession();
+        await supabaseClient.auth
+          .getSession();
 
 
       if (error) {
@@ -987,7 +1324,9 @@
         data.session
       ) {
 
-        showLoggedIn(data.session);
+        showLoggedIn(
+          data.session
+        );
 
       } else {
 
@@ -1002,7 +1341,9 @@
       SHOW LOGGED IN
     */
 
-    function showLoggedIn(session) {
+    function showLoggedIn(
+      session
+    ) {
 
       if (
         !session ||
@@ -1012,9 +1353,11 @@
       }
 
 
-      authArea.hidden = true;
+      authArea.hidden =
+        true;
 
-      loggedInArea.hidden = false;
+      loggedInArea.hidden =
+        false;
 
 
       const user =
@@ -1029,7 +1372,8 @@
 
 
       accountWelcome.textContent =
-        "Welcome, " + fullName;
+        "Welcome, " +
+        fullName;
 
 
       accountEmailDisplay.textContent =
@@ -1044,17 +1388,25 @@
 
     function showLoggedOut() {
 
-      authArea.hidden = false;
+      authArea.hidden =
+        false;
 
-      loggedInArea.hidden = true;
+      loggedInArea.hidden =
+        true;
 
-      loginForm.hidden = false;
+      loginForm.hidden =
+        false;
 
-      signupForm.hidden = true;
+      signupForm.hidden =
+        true;
 
-      loginTab.classList.add("active");
+      loginTab.classList.add(
+        "active"
+      );
 
-      signupTab.classList.remove("active");
+      signupTab.classList.remove(
+        "active"
+      );
 
     }
 
@@ -1072,7 +1424,8 @@
         }
 
 
-        logoutButton.disabled = true;
+        logoutButton.disabled =
+          true;
 
         logoutButton.textContent =
           "LOGGING OUT...";
@@ -1081,7 +1434,8 @@
         try {
 
           const { error } =
-            await supabaseClient.auth.signOut();
+            await supabaseClient.auth
+              .signOut();
 
 
           if (error) {
@@ -1110,7 +1464,8 @@
 
         } finally {
 
-          logoutButton.disabled = false;
+          logoutButton.disabled =
+            false;
 
           logoutButton.textContent =
             "LOG OUT";
@@ -1134,7 +1489,9 @@
         "click",
         () => {
 
-          mobileMenu.classList.add("is-open");
+          mobileMenu.classList.add(
+            "is-open"
+          );
 
           menuToggle.setAttribute(
             "aria-expanded",
@@ -1156,7 +1513,9 @@
         "click",
         () => {
 
-          mobileMenu.classList.remove("is-open");
+          mobileMenu.classList.remove(
+            "is-open"
+          );
 
           menuToggle.setAttribute(
             "aria-expanded",
@@ -1170,7 +1529,7 @@
 
 
     /*
-      LOAD SUPABASE
+      SUPABASE
     */
 
     async function loadSupabase() {
@@ -1178,7 +1537,9 @@
       try {
 
         const response =
-          await fetch("/api/public-config");
+          await fetch(
+            "/api/public-config"
+          );
 
 
         if (!response.ok) {
@@ -1213,14 +1574,37 @@
           );
 
 
-        await checkCurrentSession();
-
+        /*
+          PASSWORD RECOVERY EVENT
+        */
 
         supabaseClient.auth.onAuthStateChange(
           (event, session) => {
 
             if (
-              event === "SIGNED_OUT"
+              event ===
+              "PASSWORD_RECOVERY"
+            ) {
+
+              authArea.hidden =
+                true;
+
+              loggedInArea.hidden =
+                true;
+
+              resetPasswordArea.hidden =
+                false;
+
+              clearResetMessage();
+
+              return;
+
+            }
+
+
+            if (
+              event ===
+              "SIGNED_OUT"
             ) {
 
               showLoggedOut();
@@ -1232,12 +1616,17 @@
 
             if (session) {
 
-              showLoggedIn(session);
+              showLoggedIn(
+                session
+              );
 
             }
 
           }
         );
+
+
+        await checkCurrentSession();
 
 
       } catch (error) {
@@ -1263,4 +1652,4 @@
   </script>
 
 </body>
-  </html>
+</html>
