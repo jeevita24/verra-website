@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>My Account | VERRA</title>
 
@@ -135,7 +138,10 @@
 
 
     <!-- AUTH AREA -->
-    <section class="account-card" id="authArea">
+    <section
+      class="account-card"
+      id="authArea"
+    >
 
       <div class="account-tabs">
 
@@ -168,7 +174,10 @@
 
 
       <!-- LOGIN -->
-      <form id="loginForm" class="account-form">
+      <form
+        id="loginForm"
+        class="account-form"
+      >
 
         <div class="form-group">
 
@@ -210,6 +219,16 @@
           id="loginButton"
         >
           LOGIN
+        </button>
+
+
+        <!-- FORGOT PASSWORD -->
+        <button
+          type="button"
+          class="account-link-button"
+          id="forgotPasswordButton"
+        >
+          FORGOT PASSWORD?
         </button>
 
       </form>
@@ -324,6 +343,7 @@
       </form>
 
 
+      <!-- PRIVACY -->
       <div class="account-privacy">
 
         <h3>
@@ -364,6 +384,7 @@
 
       <p id="accountEmailDisplay"></p>
 
+
       <div class="account-actions">
 
         <a
@@ -390,6 +411,7 @@
 
       </div>
 
+
       <p class="account-logout-note">
         For your privacy, logging out will require you
         to sign in again before accessing your account.
@@ -408,6 +430,7 @@
       <div class="footer-brand">
         VERRA
       </div>
+
 
       <div class="footer-links">
 
@@ -441,6 +464,7 @@
 
       </div>
 
+
       <p class="footer-copy">
         © VERRA. All rights reserved.
       </p>
@@ -454,66 +478,6 @@
   <script>
 
     let supabaseClient = null;
-
-
-    /*
-      LOAD SUPABASE CONFIG
-    */
-
-    async function loadSupabase() {
-
-      try {
-
-        const response = await fetch("/api/public-config");
-
-        if (!response.ok) {
-          throw new Error("Could not load Supabase configuration.");
-        }
-
-        const config = await response.json();
-
-        if (
-          !config.supabaseUrl ||
-          !config.supabasePublishableKey
-        ) {
-          throw new Error("Supabase configuration is incomplete.");
-        }
-
-        supabaseClient =
-          window.supabase.createClient(
-            config.supabaseUrl,
-            config.supabasePublishableKey
-          );
-
-        await checkCurrentSession();
-
-        supabaseClient.auth.onAuthStateChange(
-          (event, session) => {
-
-            if (event === "SIGNED_OUT") {
-              showLoggedOut();
-              return;
-            }
-
-            if (session) {
-              showLoggedIn(session);
-            }
-
-          }
-        );
-
-      } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-          "We could not connect to your account service. Please try again.",
-          "error"
-        );
-
-      }
-
-    }
 
 
     /*
@@ -549,6 +513,9 @@
 
     const logoutButton =
       document.getElementById("logoutButton");
+
+    const forgotPasswordButton =
+      document.getElementById("forgotPasswordButton");
 
     const menuToggle =
       document.getElementById("menuToggle");
@@ -659,6 +626,7 @@
 
         clearMessage();
 
+
         const email =
           document.getElementById("loginEmail")
             .value
@@ -683,7 +651,10 @@
           }
 
 
-          if (data && data.session) {
+          if (
+            data &&
+            data.session
+          ) {
 
             showMessage(
               "You are now logged in.",
@@ -711,6 +682,107 @@
 
           button.textContent =
             "LOGIN";
+
+        }
+
+      }
+    );
+
+
+    /*
+      FORGOT PASSWORD
+    */
+
+    forgotPasswordButton.addEventListener(
+      "click",
+      async () => {
+
+        if (!supabaseClient) {
+
+          showMessage(
+            "Please wait a moment and try again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const email =
+          document.getElementById("loginEmail")
+            .value
+            .trim();
+
+
+        if (!email) {
+
+          showMessage(
+            "Please enter your email address first.",
+            "error"
+          );
+
+          document
+            .getElementById("loginEmail")
+            .focus();
+
+          return;
+
+        }
+
+
+        forgotPasswordButton.disabled = true;
+
+        forgotPasswordButton.textContent =
+          "SENDING...";
+
+        clearMessage();
+
+
+        try {
+
+          const redirectUrl =
+            window.location.origin +
+            "/account.html?reset=true";
+
+
+          const { error } =
+            await supabaseClient.auth
+              .resetPasswordForEmail(
+                email,
+                {
+                  redirectTo: redirectUrl
+                }
+              );
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          showMessage(
+            "If an account exists for this email, a password reset link has been sent. Please check your email.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            error.message ||
+            "We could not send the password reset email. Please try again.",
+            "error"
+          );
+
+        } finally {
+
+          forgotPasswordButton.disabled = false;
+
+          forgotPasswordButton.textContent =
+            "FORGOT PASSWORD?";
 
         }
 
@@ -826,12 +898,6 @@
           }
 
 
-          /*
-            With email confirmation enabled,
-            Supabase normally returns a user
-            without an active session.
-          */
-
           if (
             data &&
             data.user &&
@@ -900,6 +966,7 @@
         return;
       }
 
+
       const { data, error } =
         await supabaseClient.auth.getSession();
 
@@ -915,7 +982,10 @@
       }
 
 
-      if (data && data.session) {
+      if (
+        data &&
+        data.session
+      ) {
 
         showLoggedIn(data.session);
 
@@ -934,9 +1004,13 @@
 
     function showLoggedIn(session) {
 
-      if (!session || !session.user) {
+      if (
+        !session ||
+        !session.user
+      ) {
         return;
       }
+
 
       authArea.hidden = true;
 
@@ -997,6 +1071,7 @@
           return;
         }
 
+
         logoutButton.disabled = true;
 
         logoutButton.textContent =
@@ -1050,7 +1125,10 @@
       MOBILE MENU
     */
 
-    if (menuToggle && mobileMenu) {
+    if (
+      menuToggle &&
+      mobileMenu
+    ) {
 
       menuToggle.addEventListener(
         "click",
@@ -1069,7 +1147,10 @@
     }
 
 
-    if (mobileMenuClose && mobileMenu) {
+    if (
+      mobileMenuClose &&
+      mobileMenu
+    ) {
 
       mobileMenuClose.addEventListener(
         "click",
@@ -1089,6 +1170,91 @@
 
 
     /*
+      LOAD SUPABASE
+    */
+
+    async function loadSupabase() {
+
+      try {
+
+        const response =
+          await fetch("/api/public-config");
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Could not load Supabase configuration."
+          );
+
+        }
+
+
+        const config =
+          await response.json();
+
+
+        if (
+          !config.supabaseUrl ||
+          !config.supabasePublishableKey
+        ) {
+
+          throw new Error(
+            "Supabase configuration is incomplete."
+          );
+
+        }
+
+
+        supabaseClient =
+          window.supabase.createClient(
+            config.supabaseUrl,
+            config.supabasePublishableKey
+          );
+
+
+        await checkCurrentSession();
+
+
+        supabaseClient.auth.onAuthStateChange(
+          (event, session) => {
+
+            if (
+              event === "SIGNED_OUT"
+            ) {
+
+              showLoggedOut();
+
+              return;
+
+            }
+
+
+            if (session) {
+
+              showLoggedIn(session);
+
+            }
+
+          }
+        );
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          "We could not connect to your account service. Please try again.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    /*
       START
     */
 
@@ -1097,4 +1263,4 @@
   </script>
 
 </body>
-</html>
+  </html>
