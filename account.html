@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <script src="supabase-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
@@ -891,8 +892,7 @@
         try {
 
           const redirectUrl =
-  window.location.origin +
-  "/reset-password.html";
+            "https://officialverra.in/reset-password.html";
 
 
           const { error } =
@@ -1532,45 +1532,43 @@
       SUPABASE
     */
 
+    function getSupabaseConfig() {
+
+      const config =
+        window.VERRA_SUPABASE_CONFIG;
+
+
+      if (
+        !config ||
+        !config.url ||
+        !config.publishableKey ||
+        !config.url.startsWith("https://")
+      ) {
+
+        throw new Error(
+          "Supabase public configuration is incomplete."
+        );
+
+      }
+
+
+      return config;
+
+    }
+
+
     async function loadSupabase() {
 
       try {
 
-        const response =
-          await fetch(
-            "/api/public-config"
-          );
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            "Could not load Supabase configuration."
-          );
-
-        }
-
-
         const config =
-          await response.json();
-
-
-        if (
-          !config.supabaseUrl ||
-          !config.supabasePublishableKey
-        ) {
-
-          throw new Error(
-            "Supabase configuration is incomplete."
-          );
-
-        }
+          getSupabaseConfig();
 
 
         supabaseClient =
           window.supabase.createClient(
-            config.supabaseUrl,
-            config.supabasePublishableKey
+            config.url,
+            config.publishableKey
           );
 
 
@@ -1652,4 +1650,4 @@
   </script>
 
 </body>
-</html>
+  </html>
